@@ -62,7 +62,8 @@
         <activity android:name="com.example.wwez.viewPagerIndicator.ViewPagerIndicator_MainActivity" />
         <activity android:name="com.example.wwez.qqSliderMenu.SliderMenuMainActivity" />
         <activity android:name="com.example.wwez.dropdownmenu.DropdownMenu_MainActivity" />
-        <activity android:name="com.example.wwez.tab.Tab01_MainActivity"></activity>
+        <activity android:name="com.example.wwez.tab.Tab01_MainActivity" />
+        <activity android:name="com.example.wwez.tab.Tab02_MainActivity"></activity>
     </application>
 
 </manifest>

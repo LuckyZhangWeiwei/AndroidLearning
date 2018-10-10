@@ -14,6 +14,7 @@ import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
 import com.example.wwez.tab.Tab01_MainActivity;
+import com.example.wwez.tab.Tab02_MainActivity;
 import com.example.wwez.viewPagerIndicator.ViewPagerIndicator_MainActivity;
 //import com.example.wwez.RecyclerView.MainActivity;
 
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent17);
                  break;
              case R.id.Btn18:
-                 Intent intent18 =new Intent(this, Tab01_MainActivity.class);
+                 Intent intent18 =new Intent(this, Tab02_MainActivity.class);
                  startActivity(intent18);
                  break;
          }
