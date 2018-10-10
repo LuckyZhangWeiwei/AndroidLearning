@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.wwez.dropdownmenu.DropdownMenu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dropDownMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wwez.dropdownmenu.DropdownMenu_MainActivity"
+    app:dividerColor="@color/gray"
+    app:maskColor="@color/mask_color"
+    app:menuBackgroundColor="@color/white"
+    app:menuSelectedIcon="@drawable/ic_drop_down_selected"
+    app:menuTextSize="14sp"
+    app:menuUnSelectedIcon="@drawable/ic_drop_down_unselected"
+    app:textSelectedColor="@color/drop_drop_selected"
+    app:textUnSelectedColor="@color/drop_drop_unselected"
+    app:underlineColor="@color/gray"
+    />

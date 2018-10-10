@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.wwez.RecyclerView.Main2Activity">
+    <item android:id="@+id/action_Add"
+        android:title="Add"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_add"
+        app:showAsAction="ifRoom"  />
+    <item android:id="@+id/action_Delete"
+        android:title="Delete"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_delete"
+        app:showAsAction="ifRoom"  />
+    <item android:id="@+id/action_listview"
+        android:title="ListView"
+        android:orderInCategory="100"
+        app:showAsAction="never"  />
+    <item android:id="@+id/action_gridview"
+        android:title="GridView"
+        android:orderInCategory="100"
+        app:showAsAction="never"  />
+    <item android:id="@+id/action_hor_gridview"
+        android:title="Horizontal GridView"
+        android:orderInCategory="100"
+        app:showAsAction="never"   />
+    <item android:id="@+id/action_staggered"
+        android:title="Staggered GridView"
+        android:orderInCategory="100"
+        app:showAsAction="never"  />
+</menu>

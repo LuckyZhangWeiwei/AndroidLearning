@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentActivity08"
+    android:orientation="horizontal"
+    >
+    <fragment
+        android:id="@+id/leftfragment"
+        android:name="com.example.wwez.Fragment.Fragment01.LeftFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+    <fragment
+        android:id="@+id/rightfragment"
+        android:name="com.example.wwez.Fragment.Fragment01.RightFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        />
+</LinearLayout>

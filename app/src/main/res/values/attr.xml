@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="visible_tab_count" format="integer"/>
+    <declare-styleable name="ViewPagerIndicator">
+    <attr name="visible_tab_count"/>
+    </declare-styleable>
+    <attr name="rightPadding" format="dimension"/>
+    <declare-styleable name="SlidingMenu">
+        <attr name="rightPadding" />
+    </declare-styleable>
+
+    <declare-styleable name="dropDownMenu">
+        <attr name="underlineColor" format="color"/>
+        <attr name="dividerColor" format="color"/>
+        <attr name="textSelectedColor" format="color"/>
+        <attr name="textUnSelectedColor" format="color"/>
+        <attr name="menuBackgroundColor" format="color"/>
+        <attr name="maskColor" format="color"/>
+        <attr name="menuTextSize" format="dimension"/>
+        <attr name="menuSelectedIcon" format="reference"/>
+        <attr name="menuUnSelectedIcon" format="reference"/>
+    </declare-styleable>
+
+</resources>
