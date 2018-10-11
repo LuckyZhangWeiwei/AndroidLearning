@@ -63,7 +63,9 @@
         <activity android:name="com.example.wwez.qqSliderMenu.SliderMenuMainActivity" />
         <activity android:name="com.example.wwez.dropdownmenu.DropdownMenu_MainActivity" />
         <activity android:name="com.example.wwez.tab.Tab01_MainActivity" />
-        <activity android:name="com.example.wwez.tab.Tab02_MainActivity"></activity>
+        <activity android:name="com.example.wwez.tab.Tab02_MainActivity" />
+        <activity android:name="com.example.wwez.tab.Tab03_MainActivity" />
+        <activity android:name="com.example.wwez.tab.Tab04_MainActivity" android:theme="@style/MyTheme" />
     </application>
 
 </manifest>

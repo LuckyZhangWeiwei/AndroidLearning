@@ -12,7 +12,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.wwez.myapplication.R;
-
+/*
+* Fragment 实现tab
+* */
 public class Tab02_MainActivity extends FragmentActivity implements View.OnClickListener{
 
     private LinearLayout mTabWeixin;
