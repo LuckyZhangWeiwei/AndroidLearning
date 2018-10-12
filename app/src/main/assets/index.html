@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Webview</title>
+    <style>
+    body{
+        background:#cbcc1a;
+    }
+    .btn{
+        line-height: 40px;
+        margin: 10px;
+        background: #cccccc;
+    }
+    </style>
+</head>
+    <body>
+    <h2>WebView</h2>
+    <div>
+        <span>请输入传递的值:</span>
+        <input type="text" id="input">
+    </div>
+    <div id="btn">
+        <span class="btn">点击</span>
+    </div>
+    <script type="text/javascript">
+        var btnEle = document.getElementById("btn");
+        var inputEle = document.getElementById("input");
+        btnEle.addEventListener("click", function() {
+            var str = inputEle.value;
+            if(window.imoocLauncher) {
+                imoocLauncher.setValue(str);
+            } else {
+                alert("immocLauncher not found");
+            }
+        });
+
+        var remote = function(str) {
+            inputEle.value = str;
+        }
+    </script>
+</body>
+</html>

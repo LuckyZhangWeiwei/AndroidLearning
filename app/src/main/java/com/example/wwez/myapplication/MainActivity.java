@@ -18,6 +18,7 @@ import com.example.wwez.tab.Tab02_MainActivity;
 import com.example.wwez.tab.Tab03_MainActivity;
 import com.example.wwez.tab.Tab04_MainActivity;
 import com.example.wwez.viewPagerIndicator.ViewPagerIndicator_MainActivity;
+import com.example.wwez.webview.Webview_MainActivity;
 //import com.example.wwez.RecyclerView.MainActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn16;
     private Button btn17;
     private Button btn18;
+    private Button btn19;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn17.setOnClickListener(this);
         btn18 = findViewById(R.id.Btn18);
         btn18.setOnClickListener(this);
+        btn19 = findViewById(R.id.Btn19);
+        btn19.setOnClickListener(this);
     }
 
     @Override
@@ -162,6 +166,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn18:
                  Intent intent18 =new Intent(this, Tab04_MainActivity.class);
                  startActivity(intent18);
+                 break;
+             case R.id.Btn19:
+                 Intent intent19 =new Intent(this, Webview_MainActivity.class);
+                 startActivity(intent19);
                  break;
          }
     }

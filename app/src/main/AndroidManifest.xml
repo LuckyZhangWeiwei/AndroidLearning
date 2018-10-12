@@ -65,7 +65,12 @@
         <activity android:name="com.example.wwez.tab.Tab01_MainActivity" />
         <activity android:name="com.example.wwez.tab.Tab02_MainActivity" />
         <activity android:name="com.example.wwez.tab.Tab03_MainActivity" />
-        <activity android:name="com.example.wwez.tab.Tab04_MainActivity" android:theme="@style/MyTheme" />
+        <activity
+            android:name="com.example.wwez.tab.Tab04_MainActivity"
+            android:theme="@style/MyTheme" />
+        <activity android:name="com.example.wwez.webview.Webview_MainActivity"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
     </application>
 
 </manifest>

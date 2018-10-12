@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.wwez.webview.Webview_MainActivity">
+    <WebView
+        android:id="@+id/id_webview"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"/>
+    <TextView
+        android:id="@+id/tv_result"
+        android:textColor="#cc0000"
+        android:textSize="20sp"
+        tools:text="asdfasdf"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edittext"
+            android:minWidth="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/button"
+            android:layout_marginLeft="15dp"
+            android:text="发送"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
