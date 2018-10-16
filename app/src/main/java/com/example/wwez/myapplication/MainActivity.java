@@ -11,6 +11,7 @@ import com.example.wwez.Broadcast.BoardcastActivity;
 import com.example.wwez.Broadcast.Order_UnOrder_Broadcast_Activity;
 import com.example.wwez.Broadcast.SMS_Listener_Activity;
 import com.example.wwez.ListView.ListViewMainActivity;
+import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
 import com.example.wwez.tab.Tab01_MainActivity;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn17;
     private Button btn18;
     private Button btn19;
+    private Button btn20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn18.setOnClickListener(this);
         btn19 = findViewById(R.id.Btn19);
         btn19.setOnClickListener(this);
+        btn20 = findViewById(R.id.Btn20);
+        btn20.setOnClickListener(this);
     }
 
     @Override
@@ -170,6 +174,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn19:
                  Intent intent19 =new Intent(this, Webview_MainActivity.class);
                  startActivity(intent19);
+                 break;
+             case R.id.Btn20:
+                 Intent intent20 =new Intent(this, AsyncLoading_MainActivity.class);
+                 startActivity(intent20);
                  break;
          }
     }
