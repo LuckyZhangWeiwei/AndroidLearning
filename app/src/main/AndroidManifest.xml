@@ -71,7 +71,9 @@
         <activity
             android:name="com.example.wwez.webview.Webview_MainActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity"></activity>
+        <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity" />
+        <activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" />
+        <activity android:name="com.example.wwez.flowlayout.FlowLayoutMainActivity"></activity>
     </application>
 
 </manifest>
