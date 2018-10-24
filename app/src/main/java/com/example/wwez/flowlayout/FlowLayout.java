@@ -41,7 +41,7 @@ public class FlowLayout extends ViewGroup {
             MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
-            if(childWidth + lineWidth +lp.leftMargin + lp.rightMargin > width){
+            if(childWidth + lineWidth +lp.leftMargin + lp.rightMargin > width - getPaddingLeft()-getPaddingRight()){
                 mLineHeight.add(lineHeight);
                 mAllViews.add(lineViews);
 
@@ -60,8 +60,8 @@ public class FlowLayout extends ViewGroup {
         mAllViews.add(lineViews);
 
         //设置子view的位置
-        int left = 0;
-        int top = 0;
+        int left = getPaddingLeft();
+        int top = getPaddingTop();
         int lineNum = mAllViews.size();
         for(int i=0; i < lineNum; i++){
             //当前行所有的view
@@ -81,7 +81,7 @@ public class FlowLayout extends ViewGroup {
                 child.layout(lc, tc, rc, bc);
                 left += child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
             }
-            left = 0;
+            left = getPaddingLeft();
             top +=lineHeight;
         }
     }
@@ -110,7 +110,7 @@ public class FlowLayout extends ViewGroup {
             //子view占据的高度
             int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
             //换行
-            if(lineWidth + childWidth > sizeWidth){
+            if(lineWidth + childWidth > sizeWidth - getPaddingLeft() - getPaddingRight()){
                 //对比得到最大的宽度
                 width = Math.max(width, lineWidth);
                 lineWidth = childWidth;
@@ -131,8 +131,8 @@ public class FlowLayout extends ViewGroup {
         }
 
         setMeasuredDimension(
-                modeWidth==MeasureSpec.EXACTLY ? sizeWidth: width,
-                modeHeight==MeasureSpec.EXACTLY ? sizeHeight: height
+                modeWidth==MeasureSpec.EXACTLY ? sizeWidth: width + getPaddingRight() + getPaddingLeft(),
+                modeHeight==MeasureSpec.EXACTLY ? sizeHeight: height + getPaddingBottom()+ getPaddingTop()
         );
     }
 

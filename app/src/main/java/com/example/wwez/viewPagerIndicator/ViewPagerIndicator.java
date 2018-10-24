@@ -52,7 +52,7 @@ public class ViewPagerIndicator extends LinearLayout {
         a.recycle();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.parseColor("#ffffffff"));
+        mPaint.setColor(Color.parseColor("#FFffffff"));
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setPathEffect(new CornerPathEffect(3));
     }
@@ -80,8 +80,9 @@ public class ViewPagerIndicator extends LinearLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         Log.d("viewpagerindicator:","dispatchDraw");
+        Log.d("viewpagerindicator:",getHeight()+"");
         canvas.save();
-        canvas.translate(mInitTranslationX+mTransloationX, getHeight());
+        canvas.translate(mInitTranslationX + mTransloationX, getHeight());
         canvas.drawPath(mPath, mPaint);
         canvas.restore();
 

@@ -73,7 +73,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity" />
         <activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" />
-        <activity android:name="com.example.wwez.flowlayout.FlowLayoutMainActivity"></activity>
+        <activity android:name="com.example.wwez.flowlayout.FlowLayoutMainActivity" />
+        <activity android:name="com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity"></activity>
     </application>
 
 </manifest>

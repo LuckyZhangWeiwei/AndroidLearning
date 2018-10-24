@@ -14,6 +14,7 @@ import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.flowlayout.FlowLayoutMainActivity;
+import com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
 import com.example.wwez.tab.Tab01_MainActivity;
 import com.example.wwez.tab.Tab02_MainActivity;
@@ -49,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn18;
     private Button btn19;
     private Button btn20;
+    private Button btn21;
+    private Button btn22;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn19.setOnClickListener(this);
         btn20 = findViewById(R.id.Btn20);
         btn20.setOnClickListener(this);
+        btn21 = findViewById(R.id.Btn21);
+        btn21.setOnClickListener(this);
+        btn22 = findViewById(R.id.Btn22);
+        btn22.setOnClickListener(this);
     }
 
     @Override
@@ -177,10 +184,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent19);
                  break;
              case R.id.Btn20:
-                 Intent intent20 =new Intent(this, FlowLayoutMainActivity.class);
+                 Intent intent20 =new Intent(this, AsyncLoading_MainActivity.class);
                  startActivity(intent20);
-//                 Intent intent20 =new Intent(this, AsyncLoading_MainActivity.class);
-//                 startActivity(intent20);
+                 break;
+             case R.id.Btn21:
+                 Intent intent21 =new Intent(this, FlowLayoutMainActivity.class);
+                 startActivity(intent21);
+                 break;
+             case R.id.Btn22:
+                 Intent intent22 =new Intent(this, Meituan_FloatSection_Activity.class);
+                 startActivity(intent22);
                  break;
          }
     }

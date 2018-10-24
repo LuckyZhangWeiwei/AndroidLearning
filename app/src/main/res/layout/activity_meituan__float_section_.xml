@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/parent_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity">
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/meituantop"
+      />
+     <com.example.wwez.meituanFloatSection.MeituanScrollView
+         android:id="@+id/scrollview"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         <FrameLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+             <LinearLayout
+                 android:orientation="vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <ImageView
+                     android:layout_width="match_parent"
+                     android:layout_height="100dp"
+                     android:background="@drawable/meituan_image1"
+                     android:scaleType="centerCrop" />
+                 <include
+                     android:id="@+id/buy"
+                     layout="@layout/meituan_buy_layout" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+                 <ImageView
+                     android:background="@drawable/meituan_image2"
+                     android:scaleType="centerCrop"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+             </LinearLayout>
+             <include
+                 android:id="@+id/top_buy_layout"
+                 layout="@layout/meituan_buy_layout" />
+         </FrameLayout>
+     </com.example.wwez.meituanFloatSection.MeituanScrollView>
+</LinearLayout>
