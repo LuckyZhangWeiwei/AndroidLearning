@@ -20,7 +20,9 @@ import com.example.wwez.tab.Tab01_MainActivity;
 import com.example.wwez.tab.Tab02_MainActivity;
 import com.example.wwez.tab.Tab03_MainActivity;
 import com.example.wwez.tab.Tab04_MainActivity;
+import com.example.wwez.tabSuspend.tabSuspend_MainActivity;
 import com.example.wwez.viewPagerIndicator.ViewPagerIndicator_MainActivity;
+import com.example.wwez.webview.WebviewTest_Activity;
 import com.example.wwez.webview.Webview_MainActivity;
 //import com.example.wwez.RecyclerView.MainActivity;
 
@@ -52,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn20;
     private Button btn21;
     private Button btn22;
+    private Button btn23;
+    private Button btn24;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn21.setOnClickListener(this);
         btn22 = findViewById(R.id.Btn22);
         btn22.setOnClickListener(this);
+        btn23 = findViewById(R.id.Btn23);
+        btn23.setOnClickListener(this);
+        btn24 = findViewById(R.id.Btn24);
+        btn24.setOnClickListener(this);
     }
 
     @Override
@@ -176,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent17);
                  break;
              case R.id.Btn18:
-                 Intent intent18 =new Intent(this, Tab04_MainActivity.class);
+                 Intent intent18 =new Intent(this, Tab02_MainActivity.class);
                  startActivity(intent18);
                  break;
              case R.id.Btn19:
@@ -194,6 +202,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn22:
                  Intent intent22 =new Intent(this, Meituan_FloatSection_Activity.class);
                  startActivity(intent22);
+                 break;
+             case R.id.Btn23:
+                 Intent intent23 =new Intent(this, WebviewTest_Activity.class);
+                 startActivity(intent23);
+                 break;
+             case R.id.Btn24:
+                 Intent intent24 =new Intent(this, tabSuspend_MainActivity.class);
+                 startActivity(intent24);
                  break;
          }
     }

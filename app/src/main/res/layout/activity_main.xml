@@ -215,12 +215,14 @@
                  android:layout_weight="1"
                  />
              <Button
+                 android:id="@+id/Btn23"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="9"
                  android:layout_weight="1"
                  />
              <Button
+                 android:id="@+id/Btn24"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="/"
