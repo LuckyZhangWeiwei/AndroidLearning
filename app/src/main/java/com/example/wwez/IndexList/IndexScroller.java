@@ -14,8 +14,6 @@ import android.widget.Adapter;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 
-import static android.support.design.widget.BottomSheetBehavior.STATE_HIDDEN;
-
 public class IndexScroller {
     private float mIndexbarWidth;
     private float mIndexbarMargin;
@@ -183,9 +181,9 @@ public class IndexScroller {
                 break;
         }
     }
-
+    // 管理触摸索引条事件
     private boolean contains(float x, float y) {
-// Determine if the point is in index bar region, which includes the
+        // Determine if the point is in index bar region, which includes the
         // right margin of the bar
         return (x >= mIndexbarRect.left && y >= mIndexbarRect.top && y <= mIndexbarRect.top
                 + mIndexbarRect.height());
@@ -200,11 +198,10 @@ public class IndexScroller {
 
                     // It demonstrates that the motion event started from index bar
                     mIsIndexing = true;
-                    // Determine which section the point is in, and move the list to
-                    // that section
+                    //通过触摸点获取当前的section的索引
                     mCurrentSection = getSectionByPoint(ev.getY());
-                    mListView.setSelection(mIndexer
-                            .getPositionForSection(mCurrentSection));
+                    //将listview 定位到指定的item
+                    mListView.setSelection(mIndexer.getPositionForSection(mCurrentSection));
                     return true;
                 }
                 break;

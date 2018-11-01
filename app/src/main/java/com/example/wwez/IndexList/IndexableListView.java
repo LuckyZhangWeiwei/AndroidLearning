@@ -54,6 +54,7 @@ public class IndexableListView extends ListView {
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         //如果mScroller 自己来处理触摸事件，该方法返回true
+        //处理触摸索引条的事件
         if(mScroller != null && mScroller.onTouchEvent(ev)) {
             return true;
         }
