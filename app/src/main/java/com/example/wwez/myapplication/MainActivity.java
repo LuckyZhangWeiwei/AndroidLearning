@@ -10,12 +10,14 @@ import android.widget.Button;
 import com.example.wwez.Broadcast.BoardcastActivity;
 import com.example.wwez.Broadcast.Order_UnOrder_Broadcast_Activity;
 import com.example.wwez.Broadcast.SMS_Listener_Activity;
+import com.example.wwez.IndexList.IndexList_MainActivity;
 import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.flowlayout.FlowLayoutMainActivity;
 import com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
+import com.example.wwez.scrolltest.ScrollTest_MainActivity;
 import com.example.wwez.tab.Tab01_MainActivity;
 import com.example.wwez.tab.Tab02_MainActivity;
 import com.example.wwez.tab.Tab03_MainActivity;
@@ -56,6 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn22;
     private Button btn23;
     private Button btn24;
+    private Button btn25;
+    private Button btn26;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,6 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn23.setOnClickListener(this);
         btn24 = findViewById(R.id.Btn24);
         btn24.setOnClickListener(this);
+        btn25 = findViewById(R.id.Btn25);
+        btn25.setOnClickListener(this);
+        btn26 = findViewById(R.id.Btn26);
+        btn26.setOnClickListener(this);
     }
 
     @Override
@@ -210,6 +218,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn24:
                  Intent intent24 =new Intent(this, tabSuspend_MainActivity.class);
                  startActivity(intent24);
+                 break;
+             case R.id.Btn25:
+                 Intent intent25 =new Intent(this, ScrollTest_MainActivity.class);
+                 startActivity(intent25);
+                 break;
+             case R.id.Btn26:
+                 Intent intent26 =new Intent(this, IndexList_MainActivity.class);
+                 startActivity(intent26);
                  break;
          }
     }

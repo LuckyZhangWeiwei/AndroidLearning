@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wwez.scrolltest.ScrollTest_MainActivity">
+    <LinearLayout
+        android:id="@+id/group1"
+        android:layout_gravity="center"
+        android:background="#FFB6C1"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_width="300dp"
+        >
+        <Button
+            android:id="@+id/btn1"
+            android:text="button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <Button
+        android:onClick="onClick"
+        android:text="scroll test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
