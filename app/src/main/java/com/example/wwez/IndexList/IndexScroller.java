@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Adapter;
 import android.widget.ListView;
@@ -41,7 +42,7 @@ public class IndexScroller {
         mScaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
         mListView = lv;
         setAdapter(mListView.getAdapter());
-
+        // 根据屏幕密度获取索引条的宽度
         mIndexbarWidth = 20 * mDensity;
         mIndexbarMargin = 10 * mDensity;
         mPreviewPadding = 5 * mDensity;
@@ -78,6 +79,7 @@ public class IndexScroller {
                 Paint previewTextPaint = new Paint();
                 previewTextPaint.setColor(Color.WHITE);
                 previewTextPaint.setTextSize(50 * mScaledDensity);
+
                 float previewTextWidth = previewTextPaint.measureText(mSections[mCurrentSection]);
                 float previewSize = 2 * mPreviewPadding + previewTextPaint.descent() - previewTextPaint.ascent();
                 // 预览文本背景区域
@@ -114,6 +116,7 @@ public class IndexScroller {
                     indexPaint
                     );
         }
+        Log.d("draw", "draw");
     }
     public void onSizeChanged(int w, int h, int oldw, int oldh){
         mListViewWidth = w;
@@ -228,7 +231,6 @@ public class IndexScroller {
                 break;
         }
         return false;
-
     }
 
     // 显示
@@ -252,8 +254,10 @@ public class IndexScroller {
             return 0;
         if (y >= mIndexbarRect.top + mIndexbarRect.height() - mIndexbarMargin)
             return mSections.length - 1;
-        return (int) ((y - mIndexbarRect.top - mIndexbarMargin) / ((mIndexbarRect
-                .height() - 2 * mIndexbarMargin) / mSections.length));
+        return (int) (
+                (y - mIndexbarRect.top - mIndexbarMargin) /
+                ((mIndexbarRect.height() - 2 * mIndexbarMargin) / mSections.length)
+        );
     }
 
 }

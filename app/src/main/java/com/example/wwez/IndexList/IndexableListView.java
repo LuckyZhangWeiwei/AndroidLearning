@@ -83,7 +83,7 @@ public class IndexableListView extends ListView {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {  // 屏幕方向变化后， 索引条调整
         super.onSizeChanged(w, h, oldw, oldh);
         if(mScroller != null) {
             mScroller.onSizeChanged(w, h, oldw, oldh);
