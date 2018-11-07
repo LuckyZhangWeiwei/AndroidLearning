@@ -11,4 +11,5 @@
     <color name="white">#ffffffff</color>
     <color name="drop_drop_selected">#ff890c85</color>
     <color name="drop_drop_unselected">#ff111111</color>
+    <color name="frament_tab_color">#f8f8f8</color>
 </resources>

@@ -72,13 +72,14 @@
             android:name="com.example.wwez.webview.Webview_MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity" />
-        <activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" />
+        <!--<activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" />-->
         <activity android:name="com.example.wwez.flowlayout.FlowLayoutMainActivity" />
         <activity android:name="com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity" />
         <activity android:name="com.example.wwez.webview.WebviewTest_Activity" />
         <activity android:name="com.example.wwez.tabSuspend.tabSuspend_MainActivity" />
         <activity android:name="com.example.wwez.scrolltest.ScrollTest_MainActivity" />
         <activity android:name="com.example.wwez.IndexList.IndexList_MainActivity"></activity>
+        <activity android:name="com.example.wwez.twomenulist.TwolistMenu_MainActivity"></activity>
     </application>
 
 </manifest>

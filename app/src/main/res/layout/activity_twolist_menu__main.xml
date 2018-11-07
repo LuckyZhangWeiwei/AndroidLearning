@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="#666633"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#f4f4f4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+            <TextView
+                android:id="@+id/tab1_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="商品"
+                android:textColor="#2196F3"
+                android:textSize="18sp" />
+            <TextView
+                android:id="@+id/tab2_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="评价"
+                android:textColor="#666666"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tab3_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="详情"
+                android:textColor="#666666"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#666666" />
+        <View
+            android:id="@+id/cursor"
+            android:layout_width="50dp"
+            android:layout_height="2dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="0dip"
+            android:background="#2196F3" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/third_vp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</LinearLayout>
