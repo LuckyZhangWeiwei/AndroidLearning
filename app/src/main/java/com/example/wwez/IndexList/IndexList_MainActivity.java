@@ -55,9 +55,7 @@ public class IndexList_MainActivity extends AppCompatActivity {
 
     class ContentAdapter extends ArrayAdapter<String> implements SectionIndexer {
         private String mSections = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//        public ContentAdapter(Context context, int resource, String[] objects) {
-//            super(context, resource, objects);
-//        }
+
         public ContentAdapter(Context context, int textViewResourceId, List<String> objects) {
                 super(context, textViewResourceId, objects);
         }
@@ -72,9 +70,9 @@ public class IndexList_MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public int getPositionForSection(int sectionIndex) {
-            for(int i = sectionIndex; i>=0; i--) {
-                for(int j = 0; j < getCount(); j++) {
+        public int getPositionForSection(int sectionIndex) {  // sectionIndex 索引的序列号
+            for(int i = sectionIndex; i>=0; i--) {  //从当前的section 往前查, 一直到遇到第一个对应item为止， 否者不进行定位
+                for(int j = 0; j < getCount(); j++) {  //getcount 获得列表所有的数据条数
                     if(i == 0){ //查询数字
                         for(int k=0; k<=9;k++) {
                             if(StringMatcher.match(
