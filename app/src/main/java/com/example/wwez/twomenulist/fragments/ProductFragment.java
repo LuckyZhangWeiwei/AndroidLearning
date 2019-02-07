@@ -19,11 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wwez.myapplication.R;
+import com.example.wwez.twomenulist.adapter.CartAdapter;
 import com.example.wwez.twomenulist.adapter.LeftAdapter;
 import com.example.wwez.twomenulist.adapter.RightAdapter;
 import com.example.wwez.twomenulist.entity.Product;
 import com.example.wwez.twomenulist.entity.ViewBus;
 import com.example.wwez.twomenulist.utils.Parser;
+import com.example.wwez.twomenulist.utils.UIHelper;
 import com.example.wwez.twomenulist.utils.Utils;
 
 import java.util.ArrayList;
@@ -170,7 +172,22 @@ public class ProductFragment extends Fragment implements SectionIndexer , View.O
         popupWindow = new PopupWindow(contentView, Utils.getScreenWidth(getActivity()),
                 height);
         popupWindow.setContentView(contentView);
-
+        //cart view init
+//        View clearView = contentView.findViewById(R.id.cart_clear_view);
+//        clearView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                UIHelper.clearCart(getActivity(), businessId);
+//                cartFrame.setEnabled(false);
+//                popupWindow.dismiss();
+//                rightAdapter.notifyDataSetChanged();
+//                leftAdapter.notifyDataSetChanged();
+//                priceSum = 0.0;
+//                buyNum = 0;
+//                showSeleted();
+//            }
+//        });
+        getCart((ListView) contentView.findViewById(R.id.cart_list));
         popupWindow.setFocusable(true);
         popupWindow.setTouchInterceptor(new View.OnTouchListener(){
             @Override
@@ -192,6 +209,13 @@ public class ProductFragment extends Fragment implements SectionIndexer , View.O
         popupWindow.showAsDropDown(cartFrame);
 
         mViewBus.setPopupWindow(popupWindow);
+    }
+    private void getCart(ListView listView) {
+        listView.setAdapter(
+                new CartAdapter(
+                        getActivity(),
+                        UIHelper.getCartList(getActivity(), 0))
+        );
     }
     private AbsListView.OnScrollListener mOnScrollListener = new AbsListView.OnScrollListener(){
 

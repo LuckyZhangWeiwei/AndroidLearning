@@ -18,14 +18,10 @@ import com.example.wwez.flowlayout.FlowLayoutMainActivity;
 import com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
 import com.example.wwez.scrolltest.ScrollTest_MainActivity;
-import com.example.wwez.tab.Tab01_MainActivity;
 import com.example.wwez.tab.Tab02_MainActivity;
-import com.example.wwez.tab.Tab03_MainActivity;
-import com.example.wwez.tab.Tab04_MainActivity;
 import com.example.wwez.tabSuspend.tabSuspend_MainActivity;
 import com.example.wwez.twomenulist.TwolistMenu_MainActivity;
 import com.example.wwez.viewPagerIndicator.ViewPagerIndicator_MainActivity;
-import com.example.wwez.webview.WebviewTest_Activity;
 import com.example.wwez.webview.Webview_MainActivity;
 //import com.example.wwez.RecyclerView.MainActivity;
 
@@ -62,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn25;
     private Button btn26;
     private Button btn27;
+    private Button btn28;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn26.setOnClickListener(this);
         btn27 = findViewById(R.id.Btn27);
         btn27.setOnClickListener(this);
+        btn28 = findViewById(R.id.Btn28);
+        btn28.setOnClickListener(this);
     }
 
     @Override
@@ -216,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent22);
                  break;
              case R.id.Btn23:
-                 Intent intent23 =new Intent(this, WebviewTest_Activity.class);
+                 Intent intent23 =new Intent(this, Webview_MainActivity.class);
                  startActivity(intent23);
                  break;
              case R.id.Btn24:
@@ -234,6 +233,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn27:
                  Intent intent27 =new Intent(this, TwolistMenu_MainActivity.class);
                  startActivity(intent27);
+                 break;
+             case R.id.Btn28:
+                 Intent intent28 =new Intent(this, com.example.wwez.Imooc_handlerProject.MainActivity.class);
+                 startActivity(intent28);
                  break;
          }
     }

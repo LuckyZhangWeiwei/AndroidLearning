@@ -38,8 +38,8 @@ public class Webview_MainActivity extends AppCompatActivity implements JSBridge{
 
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.addJavascriptInterface(new JSInterface(this),"imoocLauncher");
-//        mWebview.loadUrl("file:///android_asset/index.html");
-        mWebview.loadUrl("https://luckyzhangweiwei.github.io/TestDeploy/");
+        mWebview.loadUrl("file:///android_asset/index.html");
+//        mWebview.loadUrl("https://luckyzhangweiwei.github.io/TestDeploy/");
 
         mBtn.setOnClickListener(new View.OnClickListener() {
             @Override

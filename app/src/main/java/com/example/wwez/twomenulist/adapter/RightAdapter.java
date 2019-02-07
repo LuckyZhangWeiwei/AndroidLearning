@@ -199,7 +199,7 @@ public class RightAdapter extends BaseAdapter implements SectionIndexer{
             buyNumView.setVisibility(View.VISIBLE);
             buyNumView.setText(buyNum + "");
             mPriceSumView.setText("共￥:" + convert(priceSum));
-            mPriceSumView.setTextColor(Color.parseColor("#ff66"));
+            mPriceSumView.setTextColor(Color.parseColor("#FF4081"));
             if (priceSum > 12) {
                 selectedView.setEnabled(true);
                 selectedView.setText("选好了");
@@ -270,6 +270,7 @@ public class RightAdapter extends BaseAdapter implements SectionIndexer{
             @Override
             public void onAnimationEnd(Animation animation) {
                 ball.setVisibility(View.GONE);
+                addCart();
             }}
             );
     }
