@@ -86,7 +86,9 @@
         <activity android:name="com.example.wwez.Imooc_handlerProject.DownLoadActivity" />
         <activity android:name="com.example.wwez.Imooc_handlerProject.CountDownTime" />
         <activity android:name="com.example.wwez.Imooc_handlerProject.DiglettActivity" />
-        <activity android:name="com.example.wwez.Imooc_Asynctask.MainActivity"></activity>
+        <activity android:name="com.example.wwez.Imooc_Asynctask.MainActivity" />
+        <activity android:name="com.example.wwez.Imooc_Listview.MainActivity" />
+        <activity android:name="com.example.wwez.Imooc_Listview.RequestDataActivity"></activity>
     </application>
 
 </manifest>
