@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wwez.myapplication">
 
-    <permission android:name="com.wwez.permission.xxx" />
-    <!-- 在SDCard中创建与删除文件权限 -->
+    <permission android:name="com.wwez.permission.xxx" /> <!-- 在SDCard中创建与删除文件权限 -->
     <!-- <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" /> -->
     <!-- 往SDCard写入数据权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -21,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name="com.example.wwez.Imooc_Listview.Grid3Activity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,9 +39,7 @@
         <activity android:name=".GetHtmlFromNet_Activity" />
         <activity android:name=".HttpPost_Activity" />
         <activity android:name=".FileUploadActivity" />
-        <activity android:name="com.example.wwez.Broadcast.BoardcastActivity" />
-
-        <!-- <receiver android:name=".MyBroadcastReceiver"> -->
+        <activity android:name="com.example.wwez.Broadcast.BoardcastActivity" /> <!-- <receiver android:name=".MyBroadcastReceiver"> -->
         <!-- <intent-filter> -->
         <!-- <action android:name="com.wwez.myreceiver" /> -->
         <!-- </intent-filter> -->
@@ -73,8 +71,7 @@
         <activity
             android:name="com.example.wwez.webview.Webview_MainActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity" />
-        <!-- <activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" /> -->
+        <activity android:name="com.example.wwez.asyncLoading.AsyncLoading_MainActivity" /> <!-- <activity android:name="com.example.wwez.drawable.BitmapDrawableActivity" /> -->
         <activity android:name="com.example.wwez.flowlayout.FlowLayoutMainActivity" />
         <activity android:name="com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity" />
         <activity android:name="com.example.wwez.webview.WebviewTest_Activity" />
@@ -88,7 +85,8 @@
         <activity android:name="com.example.wwez.Imooc_handlerProject.DiglettActivity" />
         <activity android:name="com.example.wwez.Imooc_Asynctask.MainActivity" />
         <activity android:name="com.example.wwez.Imooc_Listview.MainActivity" />
-        <activity android:name="com.example.wwez.Imooc_Listview.RequestDataActivity"></activity>
+        <activity android:name="com.example.wwez.Imooc_Listview.RequestDataActivity" />
+        <activity android:name="com.example.wwez.Imooc_Listview.ChartActivity" />
     </application>
 
 </manifest>

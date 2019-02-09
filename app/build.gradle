@@ -47,5 +47,6 @@ dependencies {
     api 'com.google.code.gson:gson:2.6.2'
     api project(path: ':viewPagerlibrary')
     api 'com.sxwz.qcodelib:qcodelib:1.0.1'
+    api 'com.github.bumptech.glide:glide:3.7.0'
 
 }
