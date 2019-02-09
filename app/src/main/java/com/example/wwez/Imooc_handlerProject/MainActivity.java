@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, com.example.wwez.Imooc_Listview.Grid3Activity.class));
+                startActivity(new Intent(MainActivity.this, com.example.wwez.Imooc_Cardview.CardviewActivity.class));
             }
         });
 
