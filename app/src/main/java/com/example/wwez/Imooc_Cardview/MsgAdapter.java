@@ -44,6 +44,7 @@ public class MsgAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
         if(convertView == null) {
             convertView = mInflater.inflate(R.layout.item_msg, parent, false);
+//            convertView = mInflater.inflate(R.layout.item_msg, null);
             viewHolder = new ViewHolder();
             viewHolder.mIvImg = convertView.findViewById(R.id.id_iv_img);
             viewHolder.mTvTitle = convertView.findViewById(R.id.id_tv_title);
