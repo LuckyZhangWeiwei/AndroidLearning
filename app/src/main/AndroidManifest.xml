@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.wwez.InflaterTest.InflaterActivity"></activity>
+        <activity android:name="com.example.wwez.RecyclerView.SlideRecycleViewActivity"></activity>
+        <activity android:name="com.example.wwez.InflaterTest.InflaterActivity" />
         <activity android:name="com.example.wwez.Imooc_Cardview.CardviewActivity" />
         <activity android:name="com.example.wwez.Imooc_Listview.Grid3Activity" />
         <activity android:name=".MainActivity">

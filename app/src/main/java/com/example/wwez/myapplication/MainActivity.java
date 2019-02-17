@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent18);
                  break;
              case R.id.Btn19:
-                 Intent intent19 =new Intent(this, Webview_MainActivity.class);
+                 Intent intent19 =new Intent(this, com.example.wwez.RecyclerView.SlideRecycleViewActivity.class);
                  startActivity(intent19);
                  break;
              case R.id.Btn20:
