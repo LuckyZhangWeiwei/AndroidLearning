@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(DownLoadService.ACTION_UPDATE.equalsIgnoreCase(intent.getAction())) {
-                int finished = intent.getIntExtra("finished", 0);
-//                 String finished = intent.getExtras().get("finished").toString();
-                mPbProgressbar.setProgress(finished);
+                Long finished = intent.getLongExtra("finished", 0);
+                mPbProgressbar.setProgress(Integer.parseInt(finished.toString()));
                 mTvFileName.setText(fileInfo.getFileName() +":" + finished + "%");
             }
         }

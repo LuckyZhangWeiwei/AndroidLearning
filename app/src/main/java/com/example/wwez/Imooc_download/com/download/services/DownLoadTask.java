@@ -19,7 +19,7 @@ public class DownLoadTask {
     private Context mContext;
     private FileInfo mFileInfo;
     private ThreadDAO mDao;
-    private int mFinished = 0;
+    private long mFinished = 0;
     public boolean isPause = false;
 
     public DownLoadTask(Context mContext, FileInfo mFileInfo) {
@@ -59,7 +59,7 @@ public class DownLoadTask {
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(3000);
                 conn.setRequestMethod("GET");
-                int start = mThreadInfo.getStart() + mThreadInfo.getFinished();
+                long start = mThreadInfo.getStart() + mThreadInfo.getFinished();
                 conn.setRequestProperty("Range", "bytes="+start+"-"+mThreadInfo.getEnd());
                 File file = new File(DownLoadService.DOWNLOAD_PATH, mFileInfo.getFileName());
                 raf = new RandomAccessFile(file, "rwd");
@@ -79,7 +79,7 @@ public class DownLoadTask {
                         mFinished += len;
                         if(System.currentTimeMillis() - time > 200) {
                             time = System.currentTimeMillis();
-                            int temp = mFinished * 100 / mFileInfo.getLength();
+                            long temp = mFinished * 100 / mFileInfo.getLength();
                             intent.putExtra("finished", temp);
                             mContext.sendBroadcast(intent);
                         }

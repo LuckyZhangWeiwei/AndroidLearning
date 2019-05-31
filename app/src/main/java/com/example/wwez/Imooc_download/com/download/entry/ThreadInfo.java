@@ -28,7 +28,7 @@ public class ThreadInfo {
         this.url = url;
     }
 
-    public int getStart() {
+    public long getStart() {
         return start;
     }
 
@@ -36,7 +36,7 @@ public class ThreadInfo {
         this.start = start;
     }
 
-    public int getEnd() {
+    public long getEnd() {
         return end;
     }
 
@@ -44,7 +44,7 @@ public class ThreadInfo {
         this.end = end;
     }
 
-    public int getFinished() {
+    public long getFinished() {
         return finished;
     }
 
@@ -65,7 +65,7 @@ public class ThreadInfo {
 
     private int id;
     private String url;
-    private int start;
-    private int end;
-    private int finished;
+    private long start;
+    private long end;
+    private long finished;
 }

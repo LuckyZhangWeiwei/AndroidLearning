@@ -10,7 +10,7 @@ public interface IThreadDAO {
 
     public void deleteThread(String url, int thread_id);
 
-    public void updateThread(String url, int thread_id, int finished);
+    public void updateThread(String url, int thread_id, long finished);
 
     public List<ThreadInfo> getThreads(String url);
 
