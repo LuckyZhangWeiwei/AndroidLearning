@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "download.db";
+    private static DBHelper sHelper;
 
     private static final int VERSION = 1;
 
@@ -17,8 +18,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DROP = "drop table if exists thread_info";
 
-    public DBHelper(@Nullable Context context) {
+    private DBHelper(@Nullable Context context) {
         super(context, DB_NAME, null, VERSION);
+    }
+
+    public static DBHelper getInstance(Context context) {
+        if(sHelper == null) {
+            sHelper = new DBHelper(context);
+        }
+        return sHelper;
     }
 
     @Override

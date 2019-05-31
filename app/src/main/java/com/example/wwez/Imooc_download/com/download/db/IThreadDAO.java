@@ -8,7 +8,7 @@ public interface IThreadDAO {
 
     public void insertThread(ThreadInfo threadInfo);
 
-    public void deleteThread(String url, int thread_id);
+    public void deleteThread(String url);
 
     public void updateThread(String url, int thread_id, long finished);
 

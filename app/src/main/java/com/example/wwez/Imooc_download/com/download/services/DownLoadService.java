@@ -16,29 +16,33 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.RandomAccess;
 
 public class DownLoadService extends Service {
     public static final String ACTION_START = "ACTION_START";
     public static final String ACTION_STOP = "ACTION_STOP";
+    public static final String ACTION_FINISHED = "ACTION_FINISHED";
     public static final String ACTION_UPDATE = "ACTION_UPDATE";
     public static final String DOWNLOAD_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/downloads/";
     public static final int MSG_INIT = 0;
-    private DownLoadTask mDownLoadTask;
+    private Map<Integer, DownLoadTask> mTasks = new LinkedHashMap<>();
+
     public DownLoadService() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
         if(ACTION_START.equalsIgnoreCase(intent.getAction())) {
-            FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
             Log.i("zww", "start: "+fileInfo.toString());
-            new InitThread(fileInfo).start();
+            DownLoadTask.sExecutorService.execute(new InitThread(fileInfo));
         } else if(ACTION_STOP.equalsIgnoreCase(intent.getAction())) {
-            FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
             Log.i("zww", "stop: "+fileInfo.toString());
-            if(mDownLoadTask != null)
-                mDownLoadTask.isPause = true;
+            DownLoadTask task = mTasks.get(fileInfo.getId());
+            if(task != null)
+                task.isPause = true;
         }
         return super.onStartCommand(intent, flags, startId);
     }
@@ -55,8 +59,10 @@ public class DownLoadService extends Service {
                 case MSG_INIT:
                     FileInfo fileInfo = (FileInfo) msg.obj;
                     Log.i("zww", "Init:" + fileInfo.toString());
-                    mDownLoadTask = new DownLoadTask(DownLoadService.this, fileInfo);
+                    DownLoadTask mDownLoadTask = new DownLoadTask(DownLoadService.this, fileInfo, 3);
                     mDownLoadTask.downLoad();
+
+                    mTasks.put(fileInfo.getId(), mDownLoadTask);
                     break;
             }
         }

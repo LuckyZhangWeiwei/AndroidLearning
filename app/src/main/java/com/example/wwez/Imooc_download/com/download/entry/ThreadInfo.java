@@ -48,7 +48,7 @@ public class ThreadInfo {
         return finished;
     }
 
-    public void setFinished(int finished) {
+    public void setFinished(long finished) {
         this.finished = finished;
     }
 
