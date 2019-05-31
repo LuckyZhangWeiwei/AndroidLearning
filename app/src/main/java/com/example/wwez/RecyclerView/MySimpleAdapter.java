@@ -1,11 +1,14 @@
 package com.example.wwez.RecyclerView;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.wwez.myapplication.R;
@@ -31,18 +34,28 @@ public class MySimpleAdapter extends RecyclerView.Adapter<MyViewHolder>{
         this.mDatas = datas;
         mInflater = LayoutInflater.from(context);
     }
+    public int getScreenWidth() {
+        WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size.x;
+    }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.item_single_textview, parent,false);
-        MyViewHolder viewHolder = new MyViewHolder(view);
+        View itemView = LayoutInflater.from(mContext).inflate(R.layout.item_single_textview, parent,false);
+        itemView.getLayoutParams().width = (int) (getScreenWidth() / 3);
+        MyViewHolder viewHolder = new MyViewHolder(itemView);
         return viewHolder;
+//        View view = mInflater.inflate(R.layout.item_single_textview, parent,false);
+//        MyViewHolder viewHolder = new MyViewHolder(view);
+//        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.tv.setText(mDatas.get(position));
-
+        holder.tv.setText(mDatas.get(position % mDatas.size()));
         setUpItemEvent(holder);
     }
 
@@ -72,7 +85,8 @@ public class MySimpleAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+//        return mDatas.size();
+        return Integer.MAX_VALUE;
     }
 
     public void addData(int position) {

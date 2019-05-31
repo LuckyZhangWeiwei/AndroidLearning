@@ -5,10 +5,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.wwez.RecyclerView.Main2Activity">
    <android.support.v7.widget.RecyclerView
+       android:layout_margin="2dp"
        android:id="@+id/id_recycleView"
        android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
-
-   </android.support.v7.widget.RecyclerView>
+       android:layout_height="match_parent"/>
 </android.support.constraint.ConstraintLayout>

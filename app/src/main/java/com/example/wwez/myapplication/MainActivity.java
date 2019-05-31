@@ -13,6 +13,7 @@ import com.example.wwez.Broadcast.SMS_Listener_Activity;
 import com.example.wwez.IndexList.IndexList_MainActivity;
 import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
+import com.example.wwez.banner.BannerActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.flowlayout.FlowLayoutMainActivity;
 import com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn26;
     private Button btn27;
     private Button btn28;
+    private Button btn29;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +123,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn27.setOnClickListener(this);
         btn28 = findViewById(R.id.Btn28);
         btn28.setOnClickListener(this);
+        btn29 = findViewById(R.id.Btn29);
+        btn29.setOnClickListener(this);
     }
 
     @Override
@@ -235,8 +239,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent27);
                  break;
              case R.id.Btn28:
-                 Intent intent28 =new Intent(this, com.example.wwez.Imooc_handlerProject.MainActivity.class);
+                 Intent intent28 =new Intent(this, BannerActivity.class);
                  startActivity(intent28);
+                 break;
+             case R.id.Btn29:
+                 Intent intent29 =new Intent(this, com.example.wwez.Imooc_download.MainActivity.class);
+                 startActivity(intent29);
                  break;
          }
     }

@@ -7,6 +7,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Menu;
@@ -37,8 +39,9 @@ public class Main2Activity extends AppCompatActivity {
         mAdapter = new MySimpleAdapter(this, mDatas);
         mRecycleView.setAdapter(mAdapter);
         // 设置recycleView 的布局管理
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false);
         mRecycleView.setLayoutManager(linearLayoutManager);
+        mRecycleView.scrollToPosition(2000);
         // 设置recycleView的Item 间分割线
         // mRecycleView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         // 设置动画
@@ -55,6 +58,11 @@ public class Main2Activity extends AppCompatActivity {
                 Toast.makeText(Main2Activity.this, mDatas.get(position)+" long click, position:" + position, Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        new LinearSnapHelper().attachToRecyclerView(mRecycleView);
+//        new PagerSnapHelper().attachToRecyclerView(mRecycleView);
     }
 
     private void initView() {
@@ -63,9 +71,14 @@ public class Main2Activity extends AppCompatActivity {
 
     private void initDatas() {
         mDatas = new ArrayList<String>();
-        for(int i='A'; i <='z'; i++){
+//        for(int i='A'; i <='z'; i++){
+//            mDatas.add(""+(char)i);
+//        }
+
+        for(int i='A'; i <='K'; i++){
             mDatas.add(""+(char)i);
         }
+
     }
 
     @Override
