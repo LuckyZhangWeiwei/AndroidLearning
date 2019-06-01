@@ -49,7 +49,8 @@ public class DownLoadTask {
                mDao.insertThread(threadInfo);
            }
        }
-       mThreadList = new ArrayList<>();
+       if(mThreadList == null)
+           mThreadList = new ArrayList<>();
 
        for(ThreadInfo info : threadInfos) {
            DownLoadThread thread = new DownLoadThread(info);

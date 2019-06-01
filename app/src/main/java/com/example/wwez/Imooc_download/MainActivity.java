@@ -55,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
             if(DownLoadService.ACTION_UPDATE.equalsIgnoreCase(intent.getAction())) {
                 Long finished = intent.getLongExtra("finished", 0);
                 int id = intent.getIntExtra("id", 0);
-                mAdapter.updateProgress(id, Integer.parseInt(finished.toString()));
+                updateView(id, Integer.parseInt(finished.toString()));
             } else if(DownLoadService.ACTION_FINISHED.equalsIgnoreCase(intent.getAction())) {
                 FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
-                mAdapter.updateProgress(fileInfo.getId(), 0);
+                updateView(fileInfo.getId(), 0);
                 Toast.makeText(MainActivity.this, fileInfo.getFileName() + "下载结束", Toast.LENGTH_SHORT).show();
             }
         }
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         );
         FileInfo fileInfo5 = new FileInfo(4,
                 "http://www.imooc.com/mobile/appdown",
-                "imooc.exe",
+                "imooc.apk",
                 0,
                 0
         );
@@ -124,4 +124,17 @@ public class MainActivity extends AppCompatActivity {
     private void bindView() {
         mLvFile = findViewById(R.id.lv_file);
     }
+
+    private void updateView(int itemIndex, int progressbarValue) {
+        //得到第一个可显示控件的位置，
+        int visiblePosition = mLvFile.getFirstVisiblePosition();
+        //只有当要更新的view在可见的位置时才更新，不可见时，跳过不更新
+        if (itemIndex - visiblePosition >= 0) {
+            //得到要更新的item的view
+            View view = mLvFile.getChildAt(itemIndex - visiblePosition);
+            //调用adapter更新界面
+            mAdapter.updateView(view, itemIndex, progressbarValue);
+        }
+    }
+
 }

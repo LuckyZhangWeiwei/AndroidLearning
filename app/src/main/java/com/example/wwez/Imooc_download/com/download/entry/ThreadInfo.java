@@ -4,7 +4,7 @@ public class ThreadInfo {
     public ThreadInfo() {
     }
 
-    public ThreadInfo(int id, String url, int start, int end, int finished) {
+    public ThreadInfo(int id, String url, long start, long end, long finished) {
         this.id = id;
         this.url = url;
         this.start = start;
@@ -32,7 +32,7 @@ public class ThreadInfo {
         return start;
     }
 
-    public void setStart(int start) {
+    public void setStart(long start) {
         this.start = start;
     }
 
@@ -40,7 +40,7 @@ public class ThreadInfo {
         return end;
     }
 
-    public void setEnd(int end) {
+    public void setEnd(long end) {
         this.end = end;
     }
 

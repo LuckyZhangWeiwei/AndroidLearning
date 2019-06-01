@@ -17,8 +17,8 @@ import com.example.wwez.myapplication.R;
 import java.util.List;
 
 public class FileListAdapter extends BaseAdapter {
-    private Context mContext;
-    private List<FileInfo> mFileList;
+    private static Context mContext;
+    private static List<FileInfo> mFileList;
 
     public FileListAdapter(Context mContext, List<FileInfo> mFileList) {
         this.mContext = mContext;
@@ -42,7 +42,6 @@ public class FileListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final FileInfo fileInfo = mFileList.get(position);
         ViewHolder holder = null;
         if(convertView == null) {
            convertView = LayoutInflater.from(mContext).inflate(R.layout.activity_download_listitem, null);
@@ -51,31 +50,18 @@ public class FileListAdapter extends BaseAdapter {
             holder.pbProgressBar = convertView.findViewById(R.id.pb_progress);
             holder.BtnStop = convertView.findViewById(R.id.btn_stop);
             holder.BtnStart = convertView.findViewById(R.id.btn_start);
-
             holder.pbProgressBar.setMax(100);
-            holder.BtnStop.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DownLoadService.class);
-                    intent.setAction(DownLoadService.ACTION_STOP);
-                    intent.putExtra("fileInfo", fileInfo);
-                    mContext.startService(intent);
-                }
-            });
-            holder.BtnStart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, DownLoadService.class);
-                    intent.setAction(DownLoadService.ACTION_START);
-                    intent.putExtra("fileInfo", fileInfo);
-                    mContext.startService(intent);
-                }
-            });
-
+            holder.onClickListener = new MyOnClickListener();
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
+
+        FileInfo fileInfo = mFileList.get(position);
+
+        holder.onClickListener.setPosition(position, holder);
+        holder.BtnStart.setOnClickListener(holder.onClickListener);
+        holder.BtnStop.setOnClickListener(holder.onClickListener);
 
         holder.tvFile.setText(fileInfo.getFileName()+ ":" + fileInfo.getFinished() + "%");
 
@@ -84,16 +70,67 @@ public class FileListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void updateProgress(int id, int progress) {
-        FileInfo fileInfo = mFileList.get(id);
-        fileInfo.setFinished(progress);
-        notifyDataSetChanged();
+    /**
+     * 设置viewHolder的数据
+     * @param holder
+     * @param itemIndex
+     */
+    private void setData(ViewHolder holder, int itemIndex, int progressbarValue) {
+        FileInfo fileInfo = mFileList.get(itemIndex);
+        holder.tvFile.setText(fileInfo.getFileName()+ ":" + progressbarValue + "%");
+        holder.pbProgressBar.setProgress(progressbarValue);
     }
+
+
+    /**
+     * 局部刷新
+     * @param view
+     * @param itemIndex
+     */
+    public void updateView(View view, int itemIndex, int progressbarValue) {
+        if(view == null) {
+            return;
+        }
+        //从view中取得holder
+        ViewHolder holder = (ViewHolder) view.getTag();
+        holder.pbProgressBar = view.findViewById(R.id.pb_progress);
+        holder.tvFile = view.findViewById(R.id.tv_fileName);
+        setData(holder, itemIndex, progressbarValue);
+    }
+
 
     static class ViewHolder {
         TextView tvFile;
         Button BtnStop;
         Button BtnStart;
         ProgressBar pbProgressBar;
+        MyOnClickListener onClickListener;
+    }
+
+    private static class MyOnClickListener implements View.OnClickListener {
+        private int mPosition;
+        private ViewHolder mHolder;
+
+        public void setPosition(int position, ViewHolder holder) {
+            this.mPosition = position;
+            this.mHolder = holder;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Button btn = (Button) v;
+            FileInfo fileInfo = mFileList.get(mPosition);
+            if(R.id.btn_start == btn.getId()) {
+                Intent intent = new Intent(mContext, DownLoadService.class);
+                intent.setAction(DownLoadService.ACTION_START);
+                intent.putExtra("fileInfo", fileInfo);
+                mContext.startService(intent);
+            } else if(R.id.btn_stop == btn.getId()) {
+                Intent intent = new Intent(mContext, DownLoadService.class);
+                intent.setAction(DownLoadService.ACTION_STOP);
+                intent.putExtra("fileInfo", fileInfo);
+                mContext.startService(intent);
+            }
+        }
     }
 }
