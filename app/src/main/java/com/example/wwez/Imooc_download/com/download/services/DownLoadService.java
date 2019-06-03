@@ -34,11 +34,12 @@ public class DownLoadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
         if(ACTION_START.equalsIgnoreCase(intent.getAction())) {
+            FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
             Log.i("zww", "start: "+fileInfo.toString());
             DownLoadTask.sExecutorService.execute(new InitThread(fileInfo));
         } else if(ACTION_STOP.equalsIgnoreCase(intent.getAction())) {
+            FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
             Log.i("zww", "stop: "+fileInfo.toString());
             DownLoadTask task = mTasks.get(fileInfo.getId());
             if(task != null)
@@ -63,6 +64,10 @@ public class DownLoadService extends Service {
                     mDownLoadTask.downLoad();
 
                     mTasks.put(fileInfo.getId(), mDownLoadTask);
+
+                    Intent intent = new Intent(ACTION_START);
+                    intent.putExtra("fileInfo", fileInfo);
+                    sendBroadcast(intent);
                     break;
             }
         }

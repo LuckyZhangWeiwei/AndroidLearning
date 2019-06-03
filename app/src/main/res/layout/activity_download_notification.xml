@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/ThemeOverlay.AppCompat.Dark"
+    tools:context="com.example.wwez.Imooc_download.MainActivity">
+    <TextView
+        android:id="@+id/tv_fileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_gravity="center_vertical"
+            android:background="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="10dp" />
+
+        <Button
+            android:id="@+id/btn_start"
+            android:text="开始"
+            android:textColor="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <Button
+            android:text="暂停"
+            android:textColor="@color/colorAccent"
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.wwez.Imooc_download.com.download.adapters.FileListAdapter;
 import com.example.wwez.Imooc_download.com.download.entry.FileInfo;
 import com.example.wwez.Imooc_download.com.download.services.DownLoadService;
+import com.example.wwez.Imooc_download.com.download.utils.NotificationUtils;
 import com.example.wwez.myapplication.R;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView mLvFile;
     private List<FileInfo> mFileList;
     private FileListAdapter mAdapter;
+    private NotificationUtils notificationUtils;
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         bindView();
         initData();
         initBroadCast();
+
+        notificationUtils = new NotificationUtils(this);
     }
 
     @Override
@@ -50,16 +54,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @TargetApi(Build.VERSION_CODES.O)
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceive(Context context, Intent intent) {
             if(DownLoadService.ACTION_UPDATE.equalsIgnoreCase(intent.getAction())) {
                 Long finished = intent.getLongExtra("finished", 0);
                 int id = intent.getIntExtra("id", 0);
                 updateView(id, Integer.parseInt(finished.toString()));
+                notificationUtils.updateNotification(id, Integer.parseInt(finished.toString()));
             } else if(DownLoadService.ACTION_FINISHED.equalsIgnoreCase(intent.getAction())) {
                 FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
                 updateView(fileInfo.getId(), 0);
                 Toast.makeText(MainActivity.this, fileInfo.getFileName() + "下载结束", Toast.LENGTH_SHORT).show();
+                notificationUtils.cancelNotification(fileInfo.getId());
+            } else if(DownLoadService.ACTION_START.equalsIgnoreCase(intent.getAction())) {
+                FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
+                notificationUtils.showNotification(fileInfo);
             }
         }
     };
@@ -73,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter();
         filter.addAction(DownLoadService.ACTION_UPDATE);
         filter.addAction(DownLoadService.ACTION_FINISHED);
+        filter.addAction(DownLoadService.ACTION_START);
         registerReceiver(mReceiver, filter);
     }
 
