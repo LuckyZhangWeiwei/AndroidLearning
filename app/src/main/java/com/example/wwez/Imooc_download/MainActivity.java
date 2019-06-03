@@ -87,14 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 0
                 );
         FileInfo fileInfo2 = new FileInfo(1,
-                "http://www.imooc.com/download/Activator.exe",
-                "Activator.exe",
+                "http://65.ierge.cn/13/201/403850.mp3",
+                "403850.mp3",
                 0,
                 0
         );
         FileInfo fileInfo3 = new FileInfo(2,
-                "http://www.imooc.com/download/iTunes64Setup.exe",
-                "iTunes64Setup.exe",
+                "http://65.ierge.cn/12/180/361661.mp3",
+                "361661.mp3",
                 0,
                 0
         );

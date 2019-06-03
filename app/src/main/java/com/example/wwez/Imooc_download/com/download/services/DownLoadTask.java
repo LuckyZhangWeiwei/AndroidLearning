@@ -26,6 +26,8 @@ public class DownLoadTask {
     private int mThreadCount = 1;
     private List<DownLoadThread> mThreadList;
     public static ExecutorService sExecutorService = Executors.newCachedThreadPool();
+    private static Object lock= new Object();
+
 
     public DownLoadTask(Context mContext, FileInfo mFileInfo, int mThreadCount) {
         this.mContext = mContext;
@@ -49,8 +51,7 @@ public class DownLoadTask {
                mDao.insertThread(threadInfo);
            }
        }
-       if(mThreadList == null)
-           mThreadList = new ArrayList<>();
+       mThreadList = new ArrayList<>();
 
        for(ThreadInfo info : threadInfos) {
            DownLoadThread thread = new DownLoadThread(info);
@@ -104,7 +105,10 @@ public class DownLoadTask {
 
                 Intent intent = new Intent(DownLoadService.ACTION_UPDATE);
 
-                mFinished += mThreadInfo.getFinished();
+                synchronized(lock) {
+                    mFinished += mThreadInfo.getFinished();
+                }
+
 
                 if(conn.getResponseCode() == 206) {
                     input = conn.getInputStream();
@@ -122,7 +126,9 @@ public class DownLoadTask {
                             long temp = mFinished * 100 / mFileInfo.getLength();
                             intent.putExtra("finished", temp);
                             intent.putExtra("id", mFileInfo.getId());
-                            mContext.sendBroadcast(intent);
+                            synchronized (lock) {
+                                mContext.sendBroadcast(intent);
+                            }
                         }
                         if(isPause) {
                             mDao.updateThread(mThreadInfo.getUrl(), mThreadInfo.getId(), mThreadInfo.getFinished());
