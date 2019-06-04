@@ -37,7 +37,7 @@ public class NotificationUtils {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void showNotification(FileInfo fileInfo) {
-        if( !mNotifications.containsKey(fileInfo.getId()) ) {
+        if(!mNotifications.containsKey(fileInfo.getId())) {
 
             NotificationChannel notificationChannel = new NotificationChannel(String.valueOf(fileInfo.getId()) ,
                     fileInfo.getFileName(),
@@ -51,29 +51,26 @@ public class NotificationUtils {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pintent = PendingIntent.getActivity(mContext, 0, intent, 0);
+            PendingIntent pIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
 
             RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.activity_download_notification);
             Intent intentStart = new Intent(mContext, DownLoadService.class);
             intentStart.setAction(DownLoadService.ACTION_START);
             intentStart.putExtra("fileInfo", fileInfo);
-            PendingIntent piStart = PendingIntent.getService(mContext, 0, intentStart, 0);
+            PendingIntent piStart = PendingIntent.getService(mContext, 1, intentStart, 0);
             remoteViews.setOnClickPendingIntent(R.id.btn_start, piStart);
 
             Intent intentStop = new Intent(mContext, DownLoadService.class);
             intentStop.setAction(DownLoadService.ACTION_STOP);
             intentStop.putExtra("fileInfo", fileInfo);
-            PendingIntent piStop = PendingIntent.getService(mContext, 0, intentStop, 0);
+            PendingIntent piStop = PendingIntent.getService(mContext, 2, intentStop, 0);
             remoteViews.setOnClickPendingIntent(R.id.btn_stop, piStop);
+
             remoteViews.setTextViewText(R.id.tv_fileName, fileInfo.getFileName());
-
-
 
             Notification notification = new Notification.Builder(mContext, String.valueOf(fileInfo.getId()))
                     .setTicker(fileInfo.getFileName() + "开始下载")
 //                    .setWhen(System.currentTimeMillis())
-                    .setColorized(true)
-                    .setColor(mContext.getResources().getColor(R.color.colorAccent))
                     .setSmallIcon(R.drawable.ic_launcher)
                     .setShowWhen(false)
                     .setAutoCancel(false)
@@ -83,7 +80,7 @@ public class NotificationUtils {
                     .setSound(null)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setPriority(NotificationManager.IMPORTANCE_NONE)
-                    .setContentIntent(pintent).build();
+                    .setContentIntent(pIntent).build();
 
 
             mNotificationManager.notify(fileInfo.getId(), notification);
