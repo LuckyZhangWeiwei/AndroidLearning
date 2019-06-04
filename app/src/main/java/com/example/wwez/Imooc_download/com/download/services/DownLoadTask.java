@@ -14,6 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -26,7 +28,7 @@ public class DownLoadTask {
     private int mThreadCount = 1;
     private List<DownLoadThread> mThreadList;
     public static ExecutorService sExecutorService = Executors.newCachedThreadPool();
-    private static Object lock= new Object();
+//    private Timer mTimer = new Timer();
 
 
     public DownLoadTask(Context mContext, FileInfo mFileInfo, int mThreadCount) {
@@ -59,6 +61,20 @@ public class DownLoadTask {
            mThreadList.add(thread);
        }
 
+//       final Intent intent = new Intent(DownLoadService.ACTION_UPDATE);
+//       mTimer.schedule(new TimerTask() {
+//           @Override
+//           public void run() {
+//
+//               long temp = mFinished * 100 / mFileInfo.getLength();
+//               intent.putExtra("finished", temp);
+//               intent.putExtra("id", mFileInfo.getId());
+//               mContext.sendBroadcast(intent);
+//
+//
+//           }
+//       }, 500, 500);
+
     }
 
     private synchronized void checkAllThreadsFinished() {
@@ -70,6 +86,7 @@ public class DownLoadTask {
             }
         }
         if(allFinished) {
+//            mTimer.cancel();
             Intent intent= new Intent(DownLoadService.ACTION_FINISHED);
             intent.putExtra("fileInfo", mFileInfo);
             mContext.sendBroadcast(intent);
@@ -105,7 +122,7 @@ public class DownLoadTask {
 
                 Intent intent = new Intent(DownLoadService.ACTION_UPDATE);
 
-                synchronized(lock) {
+                synchronized(DownLoadTask.this) {
                     mFinished += mThreadInfo.getFinished();
                 }
 
@@ -126,7 +143,7 @@ public class DownLoadTask {
                             long temp = mFinished * 100 / mFileInfo.getLength();
                             intent.putExtra("finished", temp);
                             intent.putExtra("id", mFileInfo.getId());
-                            synchronized (lock) {
+                            synchronized (DownLoadTask.this) {
                                 mContext.sendBroadcast(intent);
                             }
                         }
