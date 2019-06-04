@@ -1,5 +1,6 @@
 package com.example.wwez.Imooc_download.com.download.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -46,6 +47,10 @@ public class NotificationUtils {
 
 
             Intent intent = new Intent(mContext, com.example.wwez.Imooc_download.MainActivity.class);
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             PendingIntent pintent = PendingIntent.getActivity(mContext, 0, intent, 0);
 
             RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.activity_download_notification);
@@ -67,6 +72,8 @@ public class NotificationUtils {
             Notification notification = new Notification.Builder(mContext, String.valueOf(fileInfo.getId()))
                     .setTicker(fileInfo.getFileName() + "开始下载")
 //                    .setWhen(System.currentTimeMillis())
+                    .setColorized(true)
+                    .setColor(mContext.getResources().getColor(R.color.colorAccent))
                     .setSmallIcon(R.drawable.ic_launcher)
                     .setShowWhen(false)
                     .setAutoCancel(false)
