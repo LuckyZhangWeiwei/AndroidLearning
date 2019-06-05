@@ -45,32 +45,19 @@ public class NotificationUtils {
             notificationChannel.setSound(null, null);
             mNotificationManager.createNotificationChannel(notificationChannel);
 
-
-            Intent intent = new Intent(mContext, com.example.wwez.Imooc_download.MainActivity.class);
-            intent.setAction(Intent.ACTION_VIEW);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+            PendingIntent pIntent = getPendingIntent(0, fileInfo);
 
             RemoteViews remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.activity_download_notification);
-            Intent intentStart = new Intent(mContext, DownLoadService.class);
-            intentStart.setAction(DownLoadService.ACTION_START);
-            intentStart.putExtra("fileInfo", fileInfo);
-            PendingIntent piStart = PendingIntent.getService(mContext, 1, intentStart, 0);
+            PendingIntent piStart = getPendingIntent(1, fileInfo);
             remoteViews.setOnClickPendingIntent(R.id.btn_start, piStart);
 
-            Intent intentStop = new Intent(mContext, DownLoadService.class);
-            intentStop.setAction(DownLoadService.ACTION_STOP);
-            intentStop.putExtra("fileInfo", fileInfo);
-            PendingIntent piStop = PendingIntent.getService(mContext, 2, intentStop, 0);
+            PendingIntent piStop = getPendingIntent(2, fileInfo);
             remoteViews.setOnClickPendingIntent(R.id.btn_stop, piStop);
 
             remoteViews.setTextViewText(R.id.tv_fileName, fileInfo.getFileName());
 
             Notification notification = new Notification.Builder(mContext, String.valueOf(fileInfo.getId()))
                     .setTicker(fileInfo.getFileName() + "开始下载")
-//                    .setWhen(System.currentTimeMillis())
                     .setSmallIcon(R.drawable.ic_launcher)
                     .setShowWhen(false)
                     .setAutoCancel(false)
@@ -88,6 +75,33 @@ public class NotificationUtils {
             mNotifications.put(fileInfo.getId(), notification);
 
         }
+    }
+
+    private PendingIntent getPendingIntent(int requestCode, FileInfo fileInfo) {
+        Intent i = new Intent(mContext, DownLoadService.class);
+        switch (requestCode) {
+            case 0:
+                Intent intent = new Intent(mContext, com.example.wwez.Imooc_download.MainActivity.class);
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);                 //PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent pIntent = PendingIntent.getActivity(mContext, requestCode + fileInfo.getId(), intent, 0);
+                return pIntent;
+            case 1:
+                i.setAction(DownLoadService.ACTION_START);
+                i.putExtra("fileInfo", fileInfo);
+                PendingIntent piStart = PendingIntent.getService(mContext, requestCode + fileInfo.getId(), i, 0);
+                return piStart;
+            case 2:
+                i.setAction(DownLoadService.ACTION_STOP);
+                i.putExtra("fileInfo", fileInfo);
+                PendingIntent piStop = PendingIntent.getService(mContext, requestCode + fileInfo.getId(), i, 0);
+                return piStop;
+            default:
+                break;
+        }
+        return null;
     }
 
     public void cancelNotification(int id) {
