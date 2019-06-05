@@ -1,7 +1,9 @@
 package com.example.wwez.Imooc_download.com.download.adapters;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,16 @@ import java.util.List;
 public class FileListAdapter extends BaseAdapter {
     private static Context mContext;
     private static List<FileInfo> mFileList;
+    private static Messenger mMessenger;
 
     public FileListAdapter(Context mContext, List<FileInfo> mFileList) {
         this.mContext = mContext;
         this.mFileList = mFileList;
     }
 
+    public void setmMessenger(Messenger messenger) {
+        this.mMessenger = messenger;
+    }
     @Override
     public int getCount() {
         return mFileList.size();
@@ -121,15 +127,25 @@ public class FileListAdapter extends BaseAdapter {
             Button btn = (Button) v;
             FileInfo fileInfo = mFileList.get(mPosition);
             if(R.id.btn_start == btn.getId()) {
-                Intent intent = new Intent(mContext, DownLoadService.class);
-                intent.setAction(DownLoadService.ACTION_START);
-                intent.putExtra("fileInfo", fileInfo);
-                mContext.startService(intent);
+                Message msg = new Message();
+                msg.what = DownLoadService.MSG_START;
+                msg.obj = fileInfo;
+                try {
+                    mMessenger.send(msg);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
             } else if(R.id.btn_stop == btn.getId()) {
-                Intent intent = new Intent(mContext, DownLoadService.class);
-                intent.setAction(DownLoadService.ACTION_STOP);
-                intent.putExtra("fileInfo", fileInfo);
-                mContext.startService(intent);
+                Message msg = new Message();
+                msg.what = DownLoadService.MSG_STOP;
+                msg.obj = fileInfo;
+                try {
+                    mMessenger.send(msg);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
     }

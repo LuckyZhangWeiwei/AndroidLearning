@@ -1,7 +1,9 @@
 package com.example.wwez.Imooc_download.com.download.services;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 
 import com.example.wwez.Imooc_download.com.download.db.ThreadDAO;
 import com.example.wwez.Imooc_download.com.download.entry.FileInfo;
@@ -14,8 +16,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -28,13 +28,13 @@ public class DownLoadTask {
     private int mThreadCount = 1;
     private List<DownLoadThread> mThreadList;
     public static ExecutorService sExecutorService = Executors.newCachedThreadPool();
-//    private Timer mTimer = new Timer();
+    private Messenger mMessenger;
 
-
-    public DownLoadTask(Context mContext, FileInfo mFileInfo, int mThreadCount) {
+    public DownLoadTask(Context mContext, Messenger mMessenger, FileInfo mFileInfo, int mThreadCount) {
         this.mContext = mContext;
         this.mFileInfo = mFileInfo;
         this.mThreadCount = mThreadCount;
+        this.mMessenger = mMessenger;
         mDao = new ThreadDAO(mContext);
     }
 
@@ -60,24 +60,9 @@ public class DownLoadTask {
            DownLoadTask.sExecutorService.execute(thread);
            mThreadList.add(thread);
        }
-
-//       final Intent intent = new Intent(DownLoadService.ACTION_UPDATE);
-//       mTimer.schedule(new TimerTask() {
-//           @Override
-//           public void run() {
-//
-//               long temp = mFinished * 100 / mFileInfo.getLength();
-//               intent.putExtra("finished", temp);
-//               intent.putExtra("id", mFileInfo.getId());
-//               mContext.sendBroadcast(intent);
-//
-//
-//           }
-//       }, 500, 500);
-
     }
 
-    private synchronized void checkAllThreadsFinished() {
+    private synchronized void checkAllThreadsFinished() throws RemoteException {
         boolean allFinished = true;
         for(DownLoadThread thread : mThreadList) {
             if(!thread.isFinished) {
@@ -86,11 +71,11 @@ public class DownLoadTask {
             }
         }
         if(allFinished) {
-//            mTimer.cancel();
-            Intent intent= new Intent(DownLoadService.ACTION_FINISHED);
-            intent.putExtra("fileInfo", mFileInfo);
-            mContext.sendBroadcast(intent);
             mDao.deleteThread(mFileInfo.getUrl());
+            Message msg = new Message();
+            msg.what = DownLoadService.MSG_FINISH;
+            msg.obj = mFileInfo;
+            mMessenger.send(msg);
         }
 
     }
@@ -120,12 +105,9 @@ public class DownLoadTask {
                 raf = new RandomAccessFile(file, "rwd");
                 raf.seek(start);
 
-                Intent intent = new Intent(DownLoadService.ACTION_UPDATE);
-
                 synchronized(DownLoadTask.this) {
                     mFinished += mThreadInfo.getFinished();
                 }
-
 
                 if(conn.getResponseCode() == 206) {
                     input = conn.getInputStream();
@@ -135,16 +117,17 @@ public class DownLoadTask {
                     while ((len = input.read(buffer)) != -1) {
                         raf.write(buffer, 0 , len);
                         mFinished += len;
-
                         mThreadInfo.setFinished(mThreadInfo.getFinished() + len);
 
                         if(System.currentTimeMillis() - time > 1000) {
                             time = System.currentTimeMillis();
                             long temp = mFinished * 100 / mFileInfo.getLength();
-                            intent.putExtra("finished", temp);
-                            intent.putExtra("id", mFileInfo.getId());
+                            Message msg = new Message();
+                            msg.what = DownLoadService.MSG_UPDATE;
+                            msg.arg2 = mFileInfo.getId();
+                            msg.arg1 = (int) temp;
                             synchronized (DownLoadTask.this) {
-                                mContext.sendBroadcast(intent);
+                                mMessenger.send(msg);
                             }
                         }
                         if(isPause) {

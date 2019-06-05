@@ -2,19 +2,21 @@ package com.example.wwez.Imooc_download;
 
 import android.Manifest;
 import android.annotation.TargetApi;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Build;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wwez.Imooc_download.com.download.adapters.FileListAdapter;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private List<FileInfo> mFileList;
     private FileListAdapter mAdapter;
     private NotificationUtils notificationUtils;
+    private Messenger mFromServiceMessenger;
 
     @TargetApi(Build.VERSION_CODES.M)
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -42,35 +45,67 @@ public class MainActivity extends AppCompatActivity {
         requestAccess();
         bindView();
         initData();
-        initBroadCast();
 
         notificationUtils = new NotificationUtils(this);
+        mbindService();
+    }
+
+    ServiceConnection mconnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mFromServiceMessenger = new Messenger(service);
+
+            mAdapter.setmMessenger(mFromServiceMessenger);
+
+            Messenger messenger = new Messenger(mHandler);
+
+            Message msg = new Message();
+            msg.what = DownLoadService.MSG_BIND;
+            msg.replyTo = messenger;
+
+            try {
+                mFromServiceMessenger.send(msg);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    private void mbindService() {
+        Intent intent = new Intent(this, DownLoadService.class);
+        bindService(intent, mconnection, Service.BIND_AUTO_CREATE);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(mReceiver);
     }
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @TargetApi(Build.VERSION_CODES.O)
+    Handler mHandler = new Handler(){
         @RequiresApi(api = Build.VERSION_CODES.O)
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if(DownLoadService.ACTION_UPDATE.equalsIgnoreCase(intent.getAction())) {
-                Long finished = intent.getLongExtra("finished", 0);
-                int id = intent.getIntExtra("id", 0);
-                updateView(id, Integer.parseInt(finished.toString()));
-                notificationUtils.updateNotification(id, Integer.parseInt(finished.toString()));
-            } else if(DownLoadService.ACTION_FINISHED.equalsIgnoreCase(intent.getAction())) {
-                FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
-                updateView(fileInfo.getId(), 0);
-                Toast.makeText(MainActivity.this, fileInfo.getFileName() + "下载结束", Toast.LENGTH_SHORT).show();
-                notificationUtils.cancelNotification(fileInfo.getId());
-            } else if(DownLoadService.ACTION_START.equalsIgnoreCase(intent.getAction())) {
-                FileInfo fileInfo = (FileInfo) intent.getSerializableExtra("fileInfo");
-                notificationUtils.showNotification(fileInfo);
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case DownLoadService.MSG_UPDATE:
+                    Long finished = Long.parseLong(String.valueOf(msg.arg1)) ;
+                    int id = msg.arg2;
+                    updateView(id, Integer.parseInt(finished.toString()));
+                    notificationUtils.updateNotification(id, Integer.parseInt(finished.toString()));
+                    break;
+                case DownLoadService.MSG_FINISH:
+                    FileInfo fileInfo = (FileInfo) msg.obj;
+                    updateView(fileInfo.getId(), 0);
+                    Toast.makeText(MainActivity.this, fileInfo.getFileName() + "下载结束", Toast.LENGTH_SHORT).show();
+                    notificationUtils.cancelNotification(fileInfo.getId());
+                    break;
+                case DownLoadService.MSG_START:
+                    notificationUtils.showNotification((FileInfo) msg.obj);
+                    break;
             }
         }
     };
@@ -78,14 +113,6 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void requestAccess() {
         this.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
-    }
-
-    private void initBroadCast() {
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(DownLoadService.ACTION_UPDATE);
-        filter.addAction(DownLoadService.ACTION_FINISHED);
-        filter.addAction(DownLoadService.ACTION_START);
-        registerReceiver(mReceiver, filter);
     }
 
 

@@ -6,6 +6,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.util.Log;
 import android.widget.Switch;
 
@@ -27,7 +29,13 @@ public class DownLoadService extends Service {
     public static final String ACTION_UPDATE = "ACTION_UPDATE";
     public static final String DOWNLOAD_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/downloads/";
     public static final int MSG_INIT = 0;
+    public static final  int MSG_BIND = 2;
+    public static final  int MSG_START = 3;
+    public static final  int MSG_STOP = 4;
+    public static final  int MSG_FINISH = 5;
+    public static final  int MSG_UPDATE = 6;
     private Map<Integer, DownLoadTask> mTasks = new LinkedHashMap<>();
+    private Messenger mActivityMessenger;
 
     public DownLoadService() {
     }
@@ -51,24 +59,45 @@ public class DownLoadService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        Messenger messager = new Messenger(mHandler);
+        return messager.getBinder();
     }
 
     Handler mHandler = new Handler(){
         public void handleMessage(Message msg) {
+            FileInfo fileInfo;
             switch (msg.what) {
                 case MSG_INIT:
-                    FileInfo fileInfo = (FileInfo) msg.obj;
+                    fileInfo = (FileInfo) msg.obj;
                     Log.i("zww", "Init:" + fileInfo.toString());
-                    DownLoadTask mDownLoadTask = new DownLoadTask(DownLoadService.this, fileInfo, 3);
+                    DownLoadTask mDownLoadTask = new DownLoadTask(DownLoadService.this, mActivityMessenger, fileInfo, 3);
                     mDownLoadTask.downLoad();
 
                     mTasks.put(fileInfo.getId(), mDownLoadTask);
-
-                    Intent intent = new Intent(ACTION_START);
-                    intent.putExtra("fileInfo", fileInfo);
-                    sendBroadcast(intent);
+                    Message msg1 = new Message();
+                    msg1.what = MSG_START;
+                    msg1.obj = fileInfo;
+                    try {
+                        mActivityMessenger.send(msg1);
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
                     break;
+
+                case MSG_BIND:
+                    mActivityMessenger = msg.replyTo;
+                    break;
+                case MSG_START:
+                    fileInfo = (FileInfo) msg.obj;
+                    DownLoadTask.sExecutorService.execute(new InitThread(fileInfo));
+                    break;
+                case MSG_STOP:
+                    fileInfo = (FileInfo) msg.obj;
+                    DownLoadTask task = mTasks.get(fileInfo.getId());
+                    if(task != null)
+                        task.isPause = true;
+                    break;
+
             }
         }
     };
