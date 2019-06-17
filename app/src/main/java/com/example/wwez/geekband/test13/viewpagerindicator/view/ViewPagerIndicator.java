@@ -8,6 +8,7 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -43,6 +44,23 @@ public class ViewPagerIndicator extends LinearLayout {
     private List<String> mTitles;
 
     private static final int COLOR_TEXT_NORMAL = 0x77FFFFFF;
+
+    private static final int COLOR_TEXT_HIGH = 0xFFFFFFFF;
+
+    private ViewPager mViewPager;
+
+    public interface PageOnChangeListener {
+        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
+        void onPageSelected(int position);
+        void onPageScrollStateChanged(int state);
+    }
+
+    public PageOnChangeListener mPageOnChangeListener;
+
+    public void setOnPageChangeListener(PageOnChangeListener listener) {
+        mPageOnChangeListener = listener;
+
+    }
 
     public ViewPagerIndicator(Context context) {
         this(context, null);
@@ -158,6 +176,8 @@ public class ViewPagerIndicator extends LinearLayout {
             view.setLayoutParams(lp);
         }
 
+        setTabItemClickEvent();
+
     }
 
     private int getScreenWidth() {
@@ -176,6 +196,8 @@ public class ViewPagerIndicator extends LinearLayout {
             for(String title : mTitles) {
                 addView(generateTextView(title));
             }
+
+            setTabItemClickEvent();
         }
     }
 
@@ -204,6 +226,73 @@ public class ViewPagerIndicator extends LinearLayout {
         tv.setLayoutParams(lp);
 
         return tv;
+    }
+
+    // 设置关联的viewpager
+    public void setViewPager(ViewPager viewPager, int currentPos) {
+
+        mViewPager = viewPager;
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                // tabwidth * positionOffset + position * tabwidth
+                scroll(position, positionOffset);
+                if(mPageOnChangeListener == null) return;
+                mPageOnChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(mPageOnChangeListener == null) return;
+                mPageOnChangeListener.onPageSelected(position);
+                highLightTitle(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if(mPageOnChangeListener == null) return;
+                mPageOnChangeListener.onPageScrollStateChanged(state);
+            }
+        });
+
+        mViewPager.setCurrentItem(currentPos);
+        highLightTitle(currentPos);
+    }
+
+    //重置TAB文本颜色
+    private void resetTitleColor() {
+        for(int i=0; i<getChildCount();i++) {
+            setTitleColor(i, COLOR_TEXT_NORMAL);
+        }
+    }
+
+    // 高亮 某个tab的文本
+    private void highLightTitle(int pos) {
+        resetTitleColor();
+        setTitleColor(pos, COLOR_TEXT_HIGH);
+    }
+
+    private void setTitleColor(int pos, int color) {
+        View view = getChildAt(pos);
+        if(view instanceof TextView) {
+            ((TextView) view).setTextColor(color);
+        }
+    }
+
+    // 设置tab的点击事件
+    private void setTabItemClickEvent() {
+        int cCount = getChildCount();
+        for(int i=0; i<cCount; i++) {
+            final int j = i;
+            View view = getChildAt(i);
+            view.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mViewPager.setCurrentItem(j);
+                }
+            });
+        }
     }
 
 }

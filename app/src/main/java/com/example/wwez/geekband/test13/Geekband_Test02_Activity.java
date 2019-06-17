@@ -44,11 +44,12 @@ public class Geekband_Test02_Activity extends AppCompatActivity {
 
         mViewPager.setAdapter(mAdapter);
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mIndicator.setViewPager(mViewPager, 0);
+
+        mIndicator.setOnPageChangeListener(new ViewPagerIndicator.PageOnChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                // tabwidth * positionOffset + position * tabwidth
-                mIndicator.scroll(position, positionOffset);
+
             }
 
             @Override
@@ -61,6 +62,24 @@ public class Geekband_Test02_Activity extends AppCompatActivity {
 
             }
         });
+
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                // tabwidth * positionOffset + position * tabwidth
+//                mIndicator.scroll(position, positionOffset);
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
     private void initViews() {
