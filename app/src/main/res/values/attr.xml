@@ -2,7 +2,7 @@
 <resources>
     <attr name="visible_tab_count" format="integer"/>
     <declare-styleable name="ViewPagerIndicator">
-    <attr name="visible_tab_count"/>
+        <attr name="visible_tab_count"/>
     </declare-styleable>
     <attr name="rightPadding" format="dimension"/>
     <declare-styleable name="SlidingMenu">
@@ -19,6 +19,12 @@
         <attr name="menuTextSize" format="dimension"/>
         <attr name="menuSelectedIcon" format="reference"/>
         <attr name="menuUnSelectedIcon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="RedCycleButton">
+        <attr name="backgroundColor" format="color" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
     </declare-styleable>
 
 </resources>

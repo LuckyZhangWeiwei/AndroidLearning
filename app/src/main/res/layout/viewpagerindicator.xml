@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app = "http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffffff"
+    >
+    <com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator
+        android:id="@+id/id_indicator_geek"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar9"
+        android:orientation="horizontal"
+
+        >
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="短信1"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="收藏2"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="推荐3"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="短信4"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="收藏5"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="推荐6"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="短信7"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="收藏8"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="推荐9"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="#ccffffff"-->
+            <!--android:gravity="center"-->
+            <!--/>-->
+
+    </com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/id_viewpager_geek"
+        ></android.support.v4.view.ViewPager>
+</LinearLayout>

@@ -1,11 +1,14 @@
 package com.example.wwez.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.wwez.Broadcast.BoardcastActivity;
 import com.example.wwez.Broadcast.Order_UnOrder_Broadcast_Activity;
@@ -16,6 +19,7 @@ import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
 import com.example.wwez.banner.BannerActivity;
 import com.example.wwez.dropdownmenu.DropdownMenu_MainActivity;
 import com.example.wwez.flowlayout.FlowLayoutMainActivity;
+import com.example.wwez.geekband.test01.model.UserInfo;
 import com.example.wwez.meituanFloatSection.Meituan_FloatSection_Activity;
 import com.example.wwez.qqSliderMenu.SliderMenuMainActivity;
 import com.example.wwez.scrolltest.ScrollTest_MainActivity;
@@ -61,11 +65,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn27;
     private Button btn28;
     private Button btn29;
+    private Button btn_clear;
+
+    @Override
+    public View onCreateView(String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(name, context, attrs);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
 
         btn1 = findViewById(R.id.Btn1);
         btn1.setOnClickListener(this);
@@ -125,6 +137,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn28.setOnClickListener(this);
         btn29 = findViewById(R.id.Btn29);
         btn29.setOnClickListener(this);
+        btn_clear = findViewById(R.id.btn_clear);
+        btn_clear.setOnClickListener(this);
+
+        Intent i = getIntent();
+        if(i!=null) {
+            btn_clear.setText(i.getStringExtra("TITLE"));
+            UserInfo userInfo = (UserInfo) i.getSerializableExtra("USERINFO");
+            btn_clear.setText(userInfo.getmUserName());
+        }
+
+    }
+
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
     }
 
     @Override
@@ -245,6 +272,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn29:
                  Intent intent29 =new Intent(this, com.example.wwez.Imooc_download.MainActivity.class);
                  startActivity(intent29);
+                 break;
+             case R.id.btn_clear:
+                 Intent i = new Intent();
+                 i.putExtra("MAINACTIVITY", 10000);
+                 setResult(501, i);
+                 Intent intent30 =new Intent(this, com.example.wwez.geekband.test01.SplashActivity.class);
+                 startActivity(intent30);
                  break;
          }
     }
