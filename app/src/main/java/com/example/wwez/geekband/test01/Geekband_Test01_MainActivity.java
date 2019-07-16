@@ -5,8 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.wwez.geekband.scrolltest.Main7Activity;
 import com.example.wwez.geekband.test13.Geekband_Test02_Activity;
 import com.example.wwez.geekband.test17.TestFragmentActivity;
+import com.example.wwez.geekband.test19.Test19Activity;
 import com.example.wwez.myapplication.R;
 
 public class Geekband_Test01_MainActivity extends AppCompatActivity {
@@ -26,6 +28,20 @@ public class Geekband_Test01_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Geekband_Test01_MainActivity.this, TestFragmentActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn19).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Geekband_Test01_MainActivity.this, Test19Activity.class));
+            }
+        });
+
+        findViewById(R.id.btn20).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Geekband_Test01_MainActivity.this, Main7Activity.class));
             }
         });
     }

@@ -7,14 +7,14 @@
     android:orientation="vertical"
     android:background="#ffffffff"
     >
-    <com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator
-        android:id="@+id/id_indicator_geek"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/title_bar9"
-        android:orientation="horizontal"
+    <!--<com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator-->
+        <!--android:id="@+id/id_indicator_geek"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:background="@drawable/title_bar9"-->
+        <!--android:orientation="horizontal"-->
 
-        >
+        <!--&gt;-->
         <!--<TextView-->
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="match_parent"-->
@@ -105,11 +105,41 @@
             <!--android:gravity="center"-->
             <!--/>-->
 
-    </com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator>
-    <android.support.v4.view.ViewPager
+    <!--</com.example.wwez.geekband.test13.viewpagerindicator.view.ViewPagerIndicator>-->
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:id="@+id/id_viewpager_geek"-->
+        <!--&gt;</android.support.v4.view.ViewPager>-->
+
+    <com.example.wwez.geekband.test13.MyScrollView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/id_viewpager_geek"
-        ></android.support.v4.view.ViewPager>
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/test1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/test2" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/test3" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/test4" />
+    </com.example.wwez.geekband.test13.MyScrollView>
+
 </LinearLayout>

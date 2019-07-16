@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.wwez.Broadcast.BoardcastActivity;
 import com.example.wwez.Broadcast.Order_UnOrder_Broadcast_Activity;
 import com.example.wwez.Broadcast.SMS_Listener_Activity;
+import com.example.wwez.Imooc_response_layout.flow_layout.FlowLayoutActivity;
 import com.example.wwez.IndexList.IndexList_MainActivity;
 import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn28;
     private Button btn29;
     private Button btn_clear;
+    private Button btn30;
+    private Button btn31;
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
@@ -140,12 +143,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_clear = findViewById(R.id.btn_clear);
         btn_clear.setOnClickListener(this);
 
-        Intent i = getIntent();
-        if(i!=null) {
-            btn_clear.setText(i.getStringExtra("TITLE"));
-            UserInfo userInfo = (UserInfo) i.getSerializableExtra("USERINFO");
-            btn_clear.setText(userInfo.getmUserName());
-        }
+        btn30 = findViewById(R.id.Btn30);
+        btn30.setOnClickListener(this);
+
+        btn31 = findViewById(R.id.Btn31);
+        btn31.setOnClickListener(this);
+
+//        Intent i = getIntent();
+//        if(i!=null) {
+//            btn_clear.setText(i.getStringExtra("TITLE"));
+//            UserInfo userInfo = (UserInfo) i.getSerializableExtra("USERINFO");
+//            btn_clear.setText(userInfo.getmUserName());
+//        }
 
     }
 
@@ -273,12 +282,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  Intent intent29 =new Intent(this, com.example.wwez.Imooc_download.MainActivity.class);
                  startActivity(intent29);
                  break;
-             case R.id.btn_clear:
-                 Intent i = new Intent();
-                 i.putExtra("MAINACTIVITY", 10000);
-                 setResult(501, i);
-                 Intent intent30 =new Intent(this, com.example.wwez.geekband.test01.SplashActivity.class);
+//             case R.id.btn_clear:
+//                 Intent i = new Intent();
+//                 i.putExtra("MAINACTIVITY", 10000);
+//                 setResult(501, i);
+//                 Intent intent30 =new Intent(this, com.example.wwez.geekband.test01.SplashActivity.class);
+//                 startActivity(intent30);
+//                 break;
+             case R.id.Btn30:
+                 Intent intent30 =new Intent(this, FlowLayoutActivity.class);
                  startActivity(intent30);
+                 break;
+             case R.id.Btn31:
+                 Intent intent31 =new Intent(this, com.example.wwez.geekband.test01.SplashActivity.class);
+                 startActivity(intent31);
                  break;
          }
     }

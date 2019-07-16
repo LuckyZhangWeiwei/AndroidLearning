@@ -20,14 +20,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.wwez.geekband.test17.TestFragmentActivity"></activity>
+        <activity android:name="com.example.wwez.geekband.scrolltest.Main7Activity"></activity>
+        <activity android:name="com.example.wwez.Imooc_response_layout.flow_layout.FlowLayoutActivity" />
+        <activity android:name="com.example.wwez.Imooc_response_layout.flow_layout.Main6Activity" />
+        <activity android:name="com.example.wwez.geekband.test19.Test19Activity" />
+        <activity android:name="com.example.wwez.geekband.test17.TestFragmentActivity" />
         <activity android:name="com.example.wwez.geekband.test13.Geekband_Test02_Activity" />
         <activity android:name="com.example.wwez.geekband.test01.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name="com.example.wwez.geekband.test01.Geekband_Test01_MainActivity" />
 
@@ -43,13 +46,10 @@
         <activity android:name="com.example.wwez.Imooc_Cardview.CardviewActivity" />
         <activity android:name="com.example.wwez.Imooc_Listview.Grid3Activity" />
         <activity android:name=".MainActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+         </intent-filter>
         </activity>
         <activity android:name=".Activity01" />
         <activity android:name=".Activity02" />
