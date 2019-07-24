@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.wwez.geekband.scrolltest.Main7Activity;
 import com.example.wwez.geekband.test13.Geekband_Test02_Activity;
+import com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity;
 import com.example.wwez.geekband.test17.TestFragmentActivity;
 import com.example.wwez.geekband.test19.Test19Activity;
 import com.example.wwez.myapplication.R;
@@ -42,6 +43,13 @@ public class Geekband_Test01_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Geekband_Test01_MainActivity.this, Main7Activity.class));
+            }
+        });
+
+        findViewById(R.id.btn21).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Geekband_Test01_MainActivity.this, DrawLayoutActivity.class));
             }
         });
     }

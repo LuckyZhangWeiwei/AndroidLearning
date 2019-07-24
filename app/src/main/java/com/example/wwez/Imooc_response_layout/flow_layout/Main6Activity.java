@@ -18,6 +18,10 @@ public class Main6Activity extends AppCompatActivity {
     public void goFlowLayout(View view) {
         Intent i = new Intent(this, FlowLayoutActivity.class);
         startActivity(i);
+    }
 
+    public void gotagFlowLayout(View view) {
+        Intent i = new Intent(this, TagFlowLayoutActivity.class);
+        startActivity(i);
     }
 }

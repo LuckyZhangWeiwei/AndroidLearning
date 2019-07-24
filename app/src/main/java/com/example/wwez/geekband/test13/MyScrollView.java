@@ -81,7 +81,8 @@ public class MyScrollView extends ViewGroup {
                 mStart = y;
                 break;
             case MotionEvent.ACTION_MOVE:
-                Log.d("zww", "mEnd:"+ mEnd + "mStart:" +mStart);
+                Log.d("zww", "mEnd: "+ mEnd + " mStart: " +mStart);
+                Log.d("zww", "getScrollY(): " + getScrollY());
                 mEnd = y;
                 boolean isUp = ((mEnd - mStart) < 0) ? true : false;
                 if(!mScroller.isFinished()) {

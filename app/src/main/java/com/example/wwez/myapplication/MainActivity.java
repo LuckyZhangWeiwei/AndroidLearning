@@ -14,6 +14,7 @@ import com.example.wwez.Broadcast.BoardcastActivity;
 import com.example.wwez.Broadcast.Order_UnOrder_Broadcast_Activity;
 import com.example.wwez.Broadcast.SMS_Listener_Activity;
 import com.example.wwez.Imooc_response_layout.flow_layout.FlowLayoutActivity;
+import com.example.wwez.Imooc_response_layout.flow_layout.Main6Activity;
 import com.example.wwez.IndexList.IndexList_MainActivity;
 import com.example.wwez.ListView.ListViewMainActivity;
 import com.example.wwez.asyncLoading.AsyncLoading_MainActivity;
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                 startActivity(intent30);
 //                 break;
              case R.id.Btn30:
-                 Intent intent30 =new Intent(this, FlowLayoutActivity.class);
+                 Intent intent30 =new Intent(this, Main6Activity.class);
                  startActivity(intent30);
                  break;
              case R.id.Btn31:

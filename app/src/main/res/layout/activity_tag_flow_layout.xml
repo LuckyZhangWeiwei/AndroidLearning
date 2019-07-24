@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wwez.Imooc_response_layout.flow_layout.TagFlowLayoutActivity">
+    <com.example.wwez.Imooc_response_layout.flow_layout.view.TagFlowLayout
+        android:id="@+id/tag_flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.example.wwez.Imooc_response_layout.flow_layout.view.TagFlowLayout>
+
+    <Button
+        android:text="change data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="changeData"
+        />
+</LinearLayout>

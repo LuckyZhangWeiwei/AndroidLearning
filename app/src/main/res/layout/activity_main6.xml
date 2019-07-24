@@ -13,4 +13,11 @@
         android:layout_height="50dp"
         android:onClick="goFlowLayout"
         />
+    <Button
+        android:id="@+id/btn_tagflowlayout"
+        android:text="go tagflowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:onClick="gotagFlowLayout"
+        />
 </LinearLayout>
