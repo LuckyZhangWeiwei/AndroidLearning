@@ -4,30 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity">
-    <FrameLayout
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<View-->
+            <!--android:id="@+id/mask"-->
+            <!--android:background="@color/gray"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"/>-->
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<com.example.wwez.geekband.test13.drawlayout.CustomerDrawLayout-->
+                <!--android:layout_marginLeft="-490dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_width="500dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="vertical"-->
+                <!--&gt;-->
+                <!--<TextView-->
+                    <!--android:text="aaaa"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
+            <!--</com.example.wwez.geekband.test13.drawlayout.CustomerDrawLayout>-->
+        <!--</LinearLayout>-->
+    <!--</FrameLayout>-->
+    <com.example.wwez.geekband.test13.myviewpager.MyViewPager
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <View
-            android:id="@+id/mask"
-            android:visibility="gone"
-            android:background="@color/gray"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <LinearLayout
-                    android:id="@+id/drawerlayout"
-                    android:layout_marginLeft="-200dp"
-                    android:background="@color/white"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:text="aaaa"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-            </LinearLayout>
-    </FrameLayout>
+        android:layout_height="match_parent"></com.example.wwez.geekband.test13.myviewpager.MyViewPager>
 </LinearLayout>

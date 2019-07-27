@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity"></activity>
+        <activity android:name="com.example.wwez.geekband.test13.TestActivity"></activity>
+        <activity android:name="com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity" />
         <activity android:name="com.example.wwez.Imooc_response_layout.flow_layout.TagFlowLayoutActivity" />
         <activity android:name="com.example.wwez.geekband.scrolltest.Main7Activity" />
         <activity android:name="com.example.wwez.Imooc_response_layout.flow_layout.FlowLayoutActivity" />
@@ -28,7 +29,7 @@
         <activity android:name="com.example.wwez.geekband.test19.Test19Activity" />
         <activity android:name="com.example.wwez.geekband.test17.TestFragmentActivity" />
         <activity android:name="com.example.wwez.geekband.test13.Geekband_Test02_Activity" />
-        <activity android:name="com.example.wwez.geekband.test01.SplashActivity"></activity>
+        <activity android:name="com.example.wwez.geekband.test01.SplashActivity" />
         <activity android:name="com.example.wwez.geekband.test01.Geekband_Test01_MainActivity" />
 
         <service
