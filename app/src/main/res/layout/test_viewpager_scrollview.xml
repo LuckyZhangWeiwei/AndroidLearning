@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    android:text="CoordinatorLayout常常与
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="CoordinatorLayout常常与
     AppBarLayout和CollapsingToolbarLayout一起使用，
     用于打造各种炫酷效果的顶部栏。之前写过一篇Android 实现酷炫的顶部栏，
     不过要注意的是这次我们用到Androidx，原因是Google 发布了 Android support library 28，
@@ -71,8 +77,10 @@ CoordinatorLayout常常与
     不过要注意的是这次我们用到Androidx，原因是Google 发布了 Android support library 28，
     同时也发布了 androidx 1.0.0 第一个正式版本，然后支持库的
 "
-    android:id="@+id/editText"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:inputType="textMultiLine"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            xmlns:android="http://schemas.android.com/apk/res/android" />
+    </ScrollView>
+</LinearLayout>

@@ -81,25 +81,6 @@ public class MyViewPager extends ViewGroup {
             case MotionEvent.ACTION_MOVE:
                 endStartX = x;
                 scrollX = getScrollX();//相对于初始位置滑动的距离
-                //你滑动的距离加上屏幕的一半，除以屏幕宽度，就是当前图片显示的pos.如果你滑动距离超过了屏幕的一半，这个pos就加1
-//                position = (getScrollX() + getWidth() / 2) / getWidth();
-                if(startX > endStartX)  // 判断 左右方向
-                    position = (getScrollX() + getWidth() * 3 / 4) / getWidth();
-                else{
-                    position = (getScrollX() - getWidth() * 3 / 4) / getWidth();
-//                    Log.d("zww", getScrollX() + "");
-                }
-                //滑到最后一张的时候，不能出边界
-//                if (position >= images.length) {
-//                    position = images.length - 1;
-//                }
-                if (position >= images.length+1) {
-                    position = images.length;
-                }
-                if (position < 0) {
-                    position = 0;
-                }
-
                 if (mOnPageScrollListener != null) {
                     mOnPageScrollListener.onPageScrolled((float) (getScrollX() * 1.0 / (getWidth())), position);
                 }
@@ -107,6 +88,35 @@ public class MyViewPager extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
 //                scrollTo(position * getWidth(), 0);
+                /***************************************************************/
+                int scrollDistance = getScrollX() % getWidth();
+//                Log.d("zww", scrollDistance+"");
+                if(startX > endStartX) {// 判断 左右方向
+                    if(scrollDistance >= getWidth() / 4) {
+                        if(position < getChildCount()) {
+                            position = position + 1;
+                        }
+                    }
+                } else if(startX <= endStartX) {
+                    if(scrollDistance != 0 &&  scrollDistance < getWidth() * 3 / 4) {
+                        if (position> 0) {
+                            position = position - 1;
+                        }
+                    }
+                }
+                //滑到最后一张的时候，不能出边界
+//                if (position >= images.length) {
+//                    position = images.length - 1;
+//                    return false;
+//                }
+                if (position >= images.length+1) {
+                    position = images.length;
+                }
+                if (position < 0) {
+                    position = 0;
+                    return false;
+                }
+                /****************************************************************/
                 mScroller.startScroll(scrollX, 0, -(scrollX - position * getWidth()), 0);
                 invalidate();
                 break;
@@ -153,6 +163,15 @@ public class MyViewPager extends ViewGroup {
                 break;
         }
         return false;
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        for (int i = 0; i < getChildCount(); i++) {
+            View Child = getChildAt(i);
+            measureChild(Child, widthMeasureSpec, heightMeasureSpec);
+        }
     }
 
     public interface OnPageScrollListener {

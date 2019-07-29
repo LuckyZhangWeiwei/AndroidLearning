@@ -2,6 +2,7 @@ package com.example.wwez.geekband.test13;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -44,8 +45,8 @@ public class TestActivity extends AppCompatActivity {
         myViewPager.setonPageScrollListener(new MyViewPager.OnPageScrollListener() {
             @Override
             public void onPageScrolled(float offsetPercent, int position) {
-                //效果一：滑动页面过程中小圆点跟随移动
-                //offsetPercent:0-0.5-1-1.5-...
+//                //效果一：滑动页面过程中小圆点跟随移动
+//                //offsetPercent:0-0.5-1-1.5-...
                 float leftMargin = offsetPercent * dotDistance;
                 //如果使用系统的ViewPager也可以使用这种方法添加指示器，只需修改成如下即可：
                 //float leftMargin = positionOffset * dotDistance + position * dotDistance;
@@ -57,7 +58,13 @@ public class TestActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                //效果二：滑动页面过程中小圆点不跟随移动，到某个指定位置才切换小圆点
+//                Log.e("TAG", "position=" + position);
+//                float leftMargin = position * dotDistance;
+//                FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) viewDot.getLayoutParams();
+//                params.leftMargin = (int) leftMargin; //滑动后更新距离
+////                Elog.e("Offset", "params.leftMargin=" + params.leftMargin);
+//                viewDot.setLayoutParams(params);
             }
         });
 
