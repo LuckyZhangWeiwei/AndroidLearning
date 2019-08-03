@@ -20,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.wwez.geekband.test13.TestActivity"></activity>
+        <activity android:name="com.example.wwez.geekband.test13.myrefresh.Main8Activity"></activity>
+        <activity android:name="com.example.wwez.geekband.test13.TestActivity" />
         <activity android:name="com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity" />
         <activity android:name="com.example.wwez.Imooc_response_layout.flow_layout.TagFlowLayoutActivity" />
         <activity android:name="com.example.wwez.geekband.scrolltest.Main7Activity" />

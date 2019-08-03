@@ -53,6 +53,7 @@ public class MyViewPager extends ViewGroup {
         for (int i = 0; i < images.length; i++) {
             ImageView iv = new ImageView(getContext());
             iv.setBackgroundResource(images[i]);
+            iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addView(iv);
         }
 
@@ -87,10 +88,7 @@ public class MyViewPager extends ViewGroup {
                 endStartX = x;
                 break;
             case MotionEvent.ACTION_UP:
-//                scrollTo(position * getWidth(), 0);
-                /***************************************************************/
                 int scrollDistance = getScrollX() % getWidth();
-//                Log.d("zww", scrollDistance+"");
                 if(startX > endStartX) {// 判断 左右方向
                     if(scrollDistance >= getWidth() / 4) {
                         if(position < getChildCount()) {
@@ -114,14 +112,23 @@ public class MyViewPager extends ViewGroup {
                 }
                 if (position < 0) {
                     position = 0;
-                    return false;
                 }
-                /****************************************************************/
                 mScroller.startScroll(scrollX, 0, -(scrollX - position * getWidth()), 0);
                 invalidate();
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void scrollTo(int x, int y) {
+        if(x < 0) {
+            x = 0;
+        }
+        if(x > getMeasuredWidth() * (getChildCount() - 1)) {
+            x = getMeasuredWidth() * (getChildCount() - 1);
+        }
+        super.scrollTo(x, y);
     }
 
     @Override

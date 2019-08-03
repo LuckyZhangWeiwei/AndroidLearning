@@ -47,7 +47,7 @@ public class TestActivity extends AppCompatActivity {
             public void onPageScrolled(float offsetPercent, int position) {
 //                //效果一：滑动页面过程中小圆点跟随移动
 //                //offsetPercent:0-0.5-1-1.5-...
-                float leftMargin = offsetPercent * dotDistance;
+                float leftMargin = offsetPercent * dotDistance + 10;
                 //如果使用系统的ViewPager也可以使用这种方法添加指示器，只需修改成如下即可：
                 //float leftMargin = positionOffset * dotDistance + position * dotDistance;
                 FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) viewDot.getLayoutParams();

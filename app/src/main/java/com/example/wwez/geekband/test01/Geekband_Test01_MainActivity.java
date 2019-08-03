@@ -9,6 +9,7 @@ import com.example.wwez.geekband.scrolltest.Main7Activity;
 import com.example.wwez.geekband.test13.Geekband_Test02_Activity;
 import com.example.wwez.geekband.test13.TestActivity;
 import com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity;
+import com.example.wwez.geekband.test13.myrefresh.Main8Activity;
 import com.example.wwez.geekband.test17.TestFragmentActivity;
 import com.example.wwez.geekband.test19.Test19Activity;
 import com.example.wwez.myapplication.R;
@@ -52,6 +53,14 @@ public class Geekband_Test01_MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                startActivity(new Intent(Geekband_Test01_MainActivity.this, DrawLayoutActivity.class));
                 startActivity(new Intent(Geekband_Test01_MainActivity.this, TestActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn22).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+//                startActivity(new Intent(Geekband_Test01_MainActivity.this, DrawLayoutActivity.class));
+                startActivity(new Intent(Geekband_Test01_MainActivity.this, Main8Activity.class));
             }
         });
     }
