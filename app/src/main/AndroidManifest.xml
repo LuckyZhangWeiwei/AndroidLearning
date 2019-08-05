@@ -20,7 +20,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.wwez.RecyclerView.ToolbarScrollActivity"></activity>
+        <activity android:name="com.example.wwez.RecyclerView.ToolbarScrollActivity3"></activity>
+        <activity android:name="com.example.wwez.RecyclerView.ToolbarScrollActivity2" />
+        <activity android:name="com.example.wwez.RecyclerView.ToolbarScrollActivity" />
         <activity android:name="com.example.wwez.geekband.test13.myrefresh.Main8Activity" />
         <activity android:name="com.example.wwez.geekband.test13.TestActivity" />
         <activity android:name="com.example.wwez.geekband.test13.drawlayout.DrawLayoutActivity" />

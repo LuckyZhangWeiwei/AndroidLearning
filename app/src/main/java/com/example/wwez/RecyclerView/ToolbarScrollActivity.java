@@ -40,7 +40,7 @@ public class ToolbarScrollActivity extends AppCompatActivity {
     private void initRecycleView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(createItemList());
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(createItemList(), true);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.addOnScrollListener(new HidingScrollListener() {
             @Override

@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  startActivity(intent31);
                  break;
              case R.id.Btn32:
-                 Intent intent32 =new Intent(this, com.example.wwez.RecyclerView.ToolbarScrollActivity.class);
+                 Intent intent32 =new Intent(this, com.example.wwez.RecyclerView.ToolbarScrollActivity3.class);
                  startActivity(intent32);
                  break;
          }
