@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn_clear;
     private Button btn30;
     private Button btn31;
+    private Button btn32;
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
@@ -149,6 +150,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btn31 = findViewById(R.id.Btn31);
         btn31.setOnClickListener(this);
+
+        btn32 = findViewById(R.id.Btn32);
+        btn32.setOnClickListener(this);
 
 //        Intent i = getIntent();
 //        if(i!=null) {
@@ -297,6 +301,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
              case R.id.Btn31:
                  Intent intent31 =new Intent(this, com.example.wwez.geekband.test01.SplashActivity.class);
                  startActivity(intent31);
+                 break;
+             case R.id.Btn32:
+                 Intent intent32 =new Intent(this, com.example.wwez.RecyclerView.ToolbarScrollActivity.class);
+                 startActivity(intent32);
                  break;
          }
     }

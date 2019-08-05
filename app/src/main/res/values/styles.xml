@@ -48,4 +48,10 @@
         <item name="android:windowExitAnimation">@anim/pophidden_anim</item>
         <!-- 指定消失的动画xml -->
     </style>
+
+    <style name="myDialogStyle">
+        <!--<item name="windowNoTitle">true</item>-->
+        <!--<item name="android:windowBackground">@android:color/transparent</item>-->
+        <item name="android:windowAnimationStyle">@style/Theme.Design.BottomSheetDialog</item>
+    </style>
 </resources>

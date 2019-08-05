@@ -25,7 +25,7 @@ public class MyDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), R.style.myDialogStyle);
         builder.setTitle("提示");
         builder.setMessage("确定要退出吗");
         builder.setIcon(R.drawable.ic_launcher_background);
